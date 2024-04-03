@@ -1,0 +1,102 @@
+
+= Projektname: Robotersteuerung und Einstellungsverwaltungssystem
+
+== Zweck
+Dieses Use Case File beschreibt die verschiedenen Anwendungsfälle für das Robotersteuerungs- und Einstellungsverwaltungssystem gemäß den Anforderungen und Spezifikationen im Pflichtenheft.
+
+== Use Case 1: Robotersteuerung durch Benutzer
+
+=== Beschreibung
+Ein Benutzer möchte die Roboter über die Website steuern.
+
+=== Aktoren
+Benutzer, Roboter, Website, Software
+
+=== Auslöser
+Benutzer möchte die Roboter steuern.
+
+=== Vorbedingungen
+
+Die Website ist zugänglich und funktioniert ordnungsgemäß.
+Die Roboter sind betriebsbereit und mit dem Server verbunden.
+
+Die Software ist funktionsfähig
+
+=== Nachbedingungen
+Die Roboter werden entsprechend den Eingaben des Benutzers gesteuert.
+
+=== Hauptablauf
+
+Website:
+
+1. Der Benutzer navigiert zur Website.
+2. Der Benutzer meldet sich ggf. mit seinem Konto an.
+3. Der Benutzer wählt die Robotersteuerungsfunktion aus.
+4. Der Benutzer gibt die gewünschten Steuerungsbefehle ein (z. B. Geschwindigkeit, Richtung).
+5. Die Website sendet die Steuerungsbefehle an den Server.
+6. Der Server leitet die Befehle an die entsprechenden Roboter weiter.
+7. Die Roboter führen die Befehle aus.
+
+== Use Case 2: Einstellungen ändern und speichern
+
+=== Beschreibung
+Ein Benutzer möchte die Einstellungen der Roboter anpassen und speichern.
+
+=== Aktoren
+Benutzer, Website, Server
+
+=== Auslöser
+Benutzer möchte die Einstellungen ändern.
+
+=== Vorbedingungen
+
+Der Benutzer ist auf der Website angemeldet.
+Die Website und der Server sind funktionsfähig.
+
+=== Nachbedingungen
+Die geänderten Einstellungen werden im Benutzerkonto gespeichert.
+
+=== Hauptablauf
+
+Website:
+
+1. Der Benutzer öffnet die Webseite
+2. Der Nutzer ist eingeloggt oder loggt sich ein
+3. Der Benutzer wählt die gewünschten Einstellungen aus, z. B. Geschwindigkeit, Beschleunigung.
+4. Der Benutzer speichert die Änderungen.
+5. Die Website sendet die geänderten Einstellungen an den Server.
+6. Der Server speichert die Einstellungen im Benutzerkonto.
+
+Software:
+
+1. Der Benutzer öffnet die Software um Änderungen zu machen
+2. Der Benutzer loggt sich ein, wenn er noch nicht eingeloggt ist
+3. Der User macht ädnerungen
+4. Die Änderungen werden an den Server geschickt und gespeichert
+
+== Use Case 3: Input Software
+
+=== Beschreibung
+Die Input Software sendet Inputs von Geräten an den Server zur Steuerung der Roboter.
+
+=== Aktoren
+Input Controller Software, Server
+
+=== Auslöser
+Die Input Software wird gestartet.
+
+=== Vorbedingungen
+
+Die Input Software ist funktionsfähig.
+Der Server ist betriebsbereit.
+
+=== Nachbedingungen
+Die Inputs werden erfolgreich an den Server gesendet.
+
+=== Hauptablauf
+
+1. Der Benutzer öffnet die Software
+2. Der Benutzer schließt ein Input Gerät an
+3. Der Nutzer macht Inputs
+4. Die Software sendet die Inputs and den Server weiter
+5. Falls alles funktioniert sollte der Roboter die Befehle ausführen
