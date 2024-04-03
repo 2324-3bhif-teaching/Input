@@ -1,0 +1,69 @@
+|===
+|Aufgabe |Dauer (Stunden)
+
+|Website Entwicklung inklusive Login:
+|
+
+|Designkonzept erstellen
+|2
+
+|Frontend-Entwicklung (HTML, CSS, JavaScript)
+|6
+
+|Backend-Entwicklung (Anmeldelogik, Datenbankkommunikation)
+|5
+
+|Testing und Fehlerbehebung
+|1
+
+|
+|
+
+|Input Controller Software:
+|
+
+|Softwareentwicklung
+|6
+
+|Testing und Fehlerbehebung
+|1
+
+|
+|
+
+|Software zur Einstellungsänderung:
+|
+
+|Konzept wie Einstellungen Gespeichert werden
+|1
+
+|Frontend-Entwicklung
+|2
+
+|Backend-Entwicklung
+|4
+
+|Testing und Fehlerbehebung
+|1
+
+|Implementierung des Speichern und das Laden von Einstellungen
+|2
+
+|Testing und Fehlerbehebung
+|1
+
+|
+|
+
+|Server implementieren für die Speicherung der Einstellungen und Anmeldung:
+|
+
+|Datenbankschema entwerfen und implementieren
+|1
+
+|Server-Backend-Entwicklung
+|3
+
+|Testing und Fehlerbehebung
+|1
+|===
