@@ -8,23 +8,23 @@ Die Roboter können nicht gesteuert werden.
 
 == Zielsetzung
 - Software
-- Webseite mit Steuerung
-- Backend um User anzulegen und einstellungen zu speichern
+- Website mit Steuerung
+- Backend um User anzulegen und Einstellungen zu speichern
 - einhalten der Termine
 - Testen und eine Fehlerfreies Projekt
 
 == Anforderungen
-- Website mit der man die Roboter kontrollieren kann und Einstellungen wie zum Beispiel die Geschwindigkeit können geändert werden. Man kann sich anmelden um die geänderten Einstellungen zu speichern.
-- Eine Software die Inputs von Geräten an einen Server sendet und so die Roboter kontrolliert werden können
-- Eine weitere Software die es ermöglicht Einstellungen zu verändern und zu speichern
-- Benutzerfreundlich und einfach zu bedienen
+- Website mit der man die Roboter kontrollieren kann und Einstellungen wie zum Beispiel die Geschwindigkeit, können geändert werden. Man kann sich anmelden um die geänderten Einstellungen zu speichern.
+- Eine Software die Inputs von Geräten an einen Server sendet, sodass die Roboter kontrolliert werden können.
+- Eine weitere Software die es ermöglicht Einstellungen zu verändern und zu speichern.
+- Benutzerfreundlich und einfach zu bedienen.
 - Sicherheit der Daten der User sollte gewährleistet sein.
 
 == Mengengerüst
 
-- Anzahl der Webseiten: 1 (für die Steuerung der Roboter und die Einstellungen)
+- Anzahl der Websiten: 1 (für die Steuerung der Roboter und der Einstellungen)
 - Anzahl der Softwarekomponenten: 2 (Input Controller Software und Software zur Einstellungsänderung)
-- Anzahl der benötigten Server: 1 (für die Speicherung der Einstellungen und Benutzerkonten)
+- Anzahl der benötigten Server: 1 (für die Speicherung von Einstellungen und Benutzerkonten)
 
 == Aufbau und Inhalte der Offerte
 
@@ -33,17 +33,16 @@ Entwicklung einer benutzerfreundlichen Website, über die die Roboter gesteuert 
 Implementierung einer Anmeldemöglichkeit, um individuelle Einstellungen zu speichern und einen personalisierten Zugang zu gewährleisten.
 
 === Input Controller Software:
-Entwicklung einer Software, die Inputs von Geräten an einen Server sendet, um die Roboter zusteuern.
+Entwicklung einer Software, die Inputs von Geräten an einen Server sendet, um die Roboter zu steuern.
 Gewährleistung einer reibungslosen Kommunikation zwischen der Website und den Robotern über die Input Controller Software.
 
 === Software zur Einstellungsänderung:
 Entwicklung einer separaten Software, die es ermöglicht, Einstellungen zu verändern und zu speichern.
-Integration dieser Software in die Website, um Benutzern die einfache Anpassung ihrer Präferenzen zu ermöglichen.
 
 === Sicherheit und Benutzerfreundlichkeit:
 
 Implementierung von Sicherheitsmaßnahmen, um die Daten der Benutzer zu schützen und die Integrität des Systems zu gewährleisten.
-Gestaltung der Webseite und der Softwarekomponenten mit Fokus auf Benutzerfreundlichkeit und einfacher Bedienbarkeit.
+Gestaltung der Website und der Softwarekomponenten mit Fokus auf Benutzerfreundlichkeit und einfacher Bedienbarkeit.
 
 === Server-Implementierung:
 Bereitstellung eines Servers zur Speicherung von Benutzereinstellungen und Kontoinformationen.
