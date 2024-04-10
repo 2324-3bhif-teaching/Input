@@ -1,0 +1,7 @@
+== Projektidee
+
+Ist Zustand
+Die Roboter können gesteuert werden, jedoch gibt es keine Software um die Roboter zu verwalten oder einstellungen an der Steuerung vorzunehmen
+
+Soll Zustand
+Mann kann die Roboter von seinem Handy oder Laptop aus über eine Website Steuern oder mit einer Software den Roboter mit einem Controller oder einer Matte Steuern und Einstellungen vornehmen wie zum Beispiel den MaxSpeed Einstellen oder die Tastenbelegung verändern. Außerdem kann man sich einloggen um die Einstellungen für seinen User zu speichern.

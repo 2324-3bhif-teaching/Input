@@ -1,0 +1,32 @@
+|===
+|Aufgabe | Name |Dauer (Stunden)
+
+| Projektidee schreiben
+| Andreas Hasenschwandtner
+| 10 Minuten
+
+| Projektauftrag schreiben
+| Tobias Richter
+| 30 Minuten
+
+| Projektantrag schreiben
+| Tobias Richter
+| 30 Minuten
+
+| MockUps erstellen
+| Andreas Hasenschwandtner
+| 1:30 Stunde
+
+| MockUps erstellen
+| Andreas Hasenschwandtner
+| 1 Stunde
+
+| Issues
+| Andreas Hasenschwandtner
+| 20 Minuten
+
+| Bearbeiten der Docs
+| Andreas Hasenschwandtner
+| 25 Minuten
+
+|===
