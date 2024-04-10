@@ -1,0 +1,44 @@
+== Projektauftrag
+
+=== Projektbezeichnung
+Roboter Controller
+
+=== Projekthintergrund
+Roboter können nicht gesteuert werden.
+
+=== Projektergebnis
+Jeder Roboter hat einen QR Code mit dem man auf eine Internetseite kommt, wo man den Roboter controllieren kann. Als zweite Methode könnte man eine Webseite aufrufen und die ID des Roboters eingeben und ihn steuern. Des weiteren gibt es eine Software die Inputs von Input Geräten an einen Server sendet. Man kann auch Einstellungen vornehmen und die Tastenbelegungen ändern und diese Speichern wenn man sich anmeldet.
+
+=== Projektziele
+- Prototyp
+- Kommunikation mit Server
+- übersichtliche Webseite zum Steuern
+- Speichern der Einstellungen
+- Datenbank aufsetzen
+- Software zum verwalten der Einstellungen
+
+=== Projektbeschreibung
+Die Aufgabe der Webseite ist es dem User zu ermöglichen den Roboter zu steuern und mit der Software sollte jedes Gerät das der User ansteckt zu einem Input für den Roboter werden.
+
+=== Meilensteine
+
+1. Webseite Design
+2. Entwicklung der Input Geräte Erkennung
+3. Kommunikation mit Server
+4. Senden und der Empfang von Inputs vom Server
+5. Server und Datenbank zum speichern der Nutzerdaten
+6. Test und Optimierung
+
+=== Projektressourcen
+- Controller
+- Matte
+- Testhardware
+
+=== Projektrisiken
+- Herausforderungen bei der Entwicklung
+- Kommunikationsprobleme mit dem Server
+- Mangel an Erfahrung in Webseiten designen
+
+=== Projektorganisation
+- Andreas Hasenschwandtner
+- Tobias Richter

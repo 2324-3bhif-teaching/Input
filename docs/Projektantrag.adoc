@@ -1,0 +1,38 @@
+
+==  Projektantrag
+=== Projektziele
+Das Ziel des Projektes ist eine fertige Webseite zu haben mit der man die Roboter kontrollieren kann und eine Software die es ermöglicht mit Input Geräten den Roboter zu Steuern. Außerdem wird es möglich sein die Steurung anzupassen und das wird in einer Datenbank gespeichert.
+
+=== Projektumfang:
+
+- Webseite
+- Erkennen Von Input Geräten
+- Software die Inpute an Server sendet
+- Software um Einstellungen zu verändern
+- Kommunikation mit Renn-Server
+- Datenbank und Server
+
+=== Projektzeitplan:
+
+1. Webseite mit QR Codes | 1 - 3. Tag
+2. Entwicklung der Input Geräte Erkennung | 3 - 6 Tag
+3. Kommunikation mit Server | 6 - 10 Tag
+4. Senden der Empfangenen Inputs an den Server | 10 - 15 Tag
+5. Implementierung des Servers zum Speichern der Einstellungen der Nutzer | 20 Tage
+6. Test und Optimierung | 20 - 22 Tag
+
+=== Ressourcenbedarf:
+- Controller
+- Matte
+- Test Hardware
+
+=== Entwicklungsteam:
+
+- Tobias Richter
+- Andreas Hasenschwandtner
+
+=== Finanzielle Ressourcen:
+- 0
+
+=== Projektabschluss:
+Das Projekt wird abgeschlossen, sobald die definierten Ziele erreicht sind und die Softwarelösung erfolgreich getestet und implementiert wurde.

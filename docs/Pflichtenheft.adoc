@@ -4,7 +4,8 @@ User können mithilfe des Input Controllers die Roboter kontrollieren und damit 
 
 == Ist Zustand
 
-Die Roboter können nicht gesteuert werden.
+Die Roboter können gesteuert werden, jedoch gibt es keine Software um die Roboter zu verwalten oder einstellungen an der Steuerung vorzunehmen
+
 
 == Zielsetzung
 - Software
@@ -14,11 +15,14 @@ Die Roboter können nicht gesteuert werden.
 - Testen und eine Fehlerfreies Projekt
 
 == Anforderungen
-- Website mit der man die Roboter kontrollieren kann und Einstellungen wie zum Beispiel die Geschwindigkeit, können geändert werden. Man kann sich anmelden um die geänderten Einstellungen zu speichern.
+- Website mit welcher die Roboter gesteuert werden können
+- Auf der Website können Einstellungen vorgenummen werden wie zum Beispiel den TopSpeed verändern
+- Die Möglichkeit sich anzumelden um Einstellungen zu speichern
 - Eine Software die Inputs von Geräten an einen Server sendet, sodass die Roboter kontrolliert werden können.
 - Eine weitere Software die es ermöglicht Einstellungen zu verändern und zu speichern.
 - Benutzerfreundlich und einfach zu bedienen.
 - Sicherheit der Daten der User sollte gewährleistet sein.
+
 
 == Mengengerüst
 
