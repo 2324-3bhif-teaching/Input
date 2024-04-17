@@ -2,7 +2,12 @@ document.addEventListener('DOMContentLoaded', async () => {
    initLogin();
    initInput();
    userID = await fetchRestEndpoint("/authenticated", "GET");
-   console.log(userID);
+   
+   if (userID !== undefined) {
+       console.log(userID.userId);
+   } else {
+       console.log("not logged in");
+   }
 });
 
 let userID;
@@ -27,13 +32,29 @@ let deviceIdInput;
 let submitButton
 let devideID;
 let controlls1;
+let toggleMode;
+let simple;
+let advanced;
 
 function initInput() {
     deviceIdInput = document.getElementById('device-id') as HTMLInputElement;
     devideID = document.getElementById('id-input') as HTMLElement;
     controlls1 = document.getElementById('controlls-1') as HTMLElement;
     submitButton = document.getElementById('id-submit-button') as HTMLButtonElement;
-
+    toggleMode = document.getElementById('toggle') as HTMLInputElement;
+    simple = document.getElementById('simple') as HTMLElement;
+    advanced = document.getElementById('advanced') as HTMLElement;
+    
+    addEventListener('change', () => {
+        if (simple.style.display === 'block') {
+            simple.style.display = 'none';
+            advanced.style.display = 'block'
+        }
+        else {
+            simple.style.display = 'block';
+            advanced.style.display = 'none'
+        }
+    });
 
     submitButton.addEventListener('click', () => {
         deviceId = parseInt(deviceIdInput.value);

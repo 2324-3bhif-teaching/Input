@@ -23,7 +23,7 @@ app.get('/authenticated', (req, res) => {
             res.json({ userId: userId });
         }
     } else {
-        res.status(401).send("Not authenticated");
+        res.status(204).json({userId: null});
     }
 });
 

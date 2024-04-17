@@ -58,10 +58,17 @@ html {
 }
 
 
-.control-buttons {
+.control-buttons-simple {
     left: 0%;
     width: 100%;
     aspect-ratio: 1/1;
+}
+
+.control-buttons-advanced {
+    left: 0%;
+    width: 100%;
+    aspect-ratio: 1/1;
+    display: none;
 }
 
 .controll-button {
