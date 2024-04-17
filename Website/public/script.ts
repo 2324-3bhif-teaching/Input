@@ -5,36 +5,17 @@ document.addEventListener('DOMContentLoaded', () => {
 
 let loginBTN;
 let regBTN;
-let loginWindow;
-let regWindow;
+
 function initLogin() {
     loginBTN = document.getElementById('login') as HTMLButtonElement;
     regBTN = document.getElementById('register') as HTMLButtonElement;
-    loginWindow = document.getElementById('login-window') as HTMLElement;
-    regWindow = document.getElementById('register-window') as HTMLElement;
-    loginWindow.style.display = 'none';
-    regWindow.style.display = 'none';
     
     loginBTN.addEventListener('click', () => {
-        if (loginWindow.style.display === 'none') {
-            loginWindow.style.display = 'block';
-            regWindow.style.display = 'none'
-        }
-        else {
-            loginWindow.style.display = 'none';
-            regWindow.style.display = 'none'
-        }
+        window.location.href = 'http://localhost:3000/login';
     });
 
     regBTN.addEventListener('click', () => {
-        if (regWindow.style.display === 'none') {
-            regWindow.style.display = 'block';
-            loginWindow.style.display = 'none';
-        }
-        else {
-            regWindow.style.display = 'none';
-            loginWindow.style.display = 'none';
-        }
+        window.location.href = 'http://localhost:3000/login';
     });
 }
 
