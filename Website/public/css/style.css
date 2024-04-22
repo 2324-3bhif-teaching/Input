@@ -1,0 +1,233 @@
+body {
+    height: 100%;
+    width: 100%;
+    margin: 0;
+}
+.id-input {
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+.input-field, .submit-button {
+    border: 2px solid turquoise;
+    padding: 10px;
+    margin: 5px;
+}
+
+.submit-button:active {
+    background-color: turquoise;
+}
+
+html {
+    width: 100%;
+    height: 100%;
+}
+
+.controlls-1 {
+    width: 100%;
+    height: 100%;
+    display: none;
+}
+
+.top-bar, .bottom-bar {
+    display: flex;
+    justify-content: space-between;
+    box-sizing: border-box;
+    height: 3rem;
+}
+
+.bottom-bar {
+    position: fixed;
+    bottom: 0%;
+    width: 100%;
+}
+
+#number {
+    margin-left: 46%;
+    width: 8%;
+    text-align: center;
+    font-size: 100%;
+}
+
+#auth-buttons {
+    display: flex;
+    justify-content: right;
+    width: 100%;
+}
+
+
+.control-buttons-simple {
+    left: 0%;
+    width: 100%;
+    aspect-ratio: 1/1;
+}
+
+.control-buttons-advanced {
+    left: 0%;
+    width: 100%;
+    aspect-ratio: 1/1;
+    display: none;
+}
+
+.controll-button {
+    position: absolute;
+    width: 20%;
+    height: 20%;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    background-color: rgb(49, 45, 45);
+    color: white;
+    border-radius: 0.5rem;
+}
+
+.controll-button:active {
+    background-color: rgb(0, 0, 0);
+}
+
+#forward {
+    left: 40%;
+    top: 29.5%;
+}
+
+#backward {
+    top: 50.5%;
+    left: 40%;
+}
+
+#left{
+    left: 19.5%;
+    top: 50.5%;
+}
+
+#right {
+    top: 50.5%;
+    left: 60.5%;
+}
+
+
+
+
+
+
+
+
+
+
+
+.back {
+    background: #e2e2e2;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+}
+
+.div-center {
+    width: 400px;
+    height: 400px;
+    background-color: #fff;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+    max-width: 100%;
+    max-height: 100%;
+    overflow: auto;
+    padding: 1em 2em;
+    border-bottom: 2px solid #ccc;
+    display: table;
+}
+
+div.content {
+    display: table-cell;
+    vertical-align: middle;
+}
+
+.login {
+    display: none;
+}
+
+.register {
+    display: none;
+}
+
+#register {
+    margin-right: 1%;
+    position: relative;
+    right: 0%;
+    width: 30%;
+    height: 50%;
+    top: 25%;
+    font-size: 50%;
+    padding: 0;
+}
+
+#login {
+    margin-right: 3%;
+    position: relative;
+    width: 25%;
+    height: 50%;
+    top: 25%;
+    font-size: 50%;
+    padding: 0;
+}
+
+#simple-advanced {
+    position: absolute;
+    right: 0%;
+}
+
+.toggleContainer {
+    position: relative;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    width: fit-content;
+    border: 3px solid #343434;
+    border-radius: 20px;
+    background: #343434;
+    font-weight: bold;
+    color: #343434;
+    cursor: pointer;
+}
+.toggleContainer::before {
+    content: '';
+    position: absolute;
+    width: 50%;
+    height: 100%;
+    left: 0%;
+    border-radius:20px;
+    background: white;
+    transition: all 0.3s;
+}
+.toggleCheckbox:checked + .toggleContainer::before {
+    left: 50%;
+}
+.toggleContainer div {
+    padding: 6px;
+    text-align: center;
+    z-index: 1;
+}
+.toggleCheckbox {
+    display: none;
+}
+.toggleCheckbox:checked + .toggleContainer div:first-child{
+    color: white;
+    transition: color 0.3s;
+}
+.toggleCheckbox:checked + .toggleContainer div:last-child{
+    color: #343434;
+    transition: color 0.3s;
+}
+.toggleCheckbox + .toggleContainer div:first-child{
+    color: #343434;
+    transition: color 0.3s;
+}
+.toggleCheckbox + .toggleContainer div:last-child{
+    color: white;
+    transition: color 0.3s;
+}
