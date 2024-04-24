@@ -1,8 +1,10 @@
 package at.htlleonding.InputSoftware;
 
+import at.htlleonding.InputSoftware.model.KeyboardInput;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -15,6 +17,8 @@ public class Main extends Application {
         stage.setTitle("InputController");
         stage.setScene(scene);
         stage.show();
+        KeyboardInput input1 = new KeyboardInput(scene);
+        input1.start();
     }
 
     public static void main(String[] args) {

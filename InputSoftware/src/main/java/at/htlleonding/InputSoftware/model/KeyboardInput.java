@@ -1,33 +1,22 @@
 package at.htlleonding.InputSoftware.model;
 
+import javafx.scene.Scene;
+
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import javax.swing.JFrame;
 
 public class KeyboardInput {
-    public static void Start() {
-        JFrame frame = new JFrame("Keyboard Input");
-        frame.setSize(400, 300);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    private Scene mScene;
 
-        frame.addKeyListener(new KeyListener() {
-            @Override
-            public void keyTyped(KeyEvent e) {
+    public KeyboardInput(Scene scene) {
+        mScene = scene;
+    }
 
-            }
-
-            @Override
-            public void keyPressed(KeyEvent e) {
-                System.out.println("Key Pressed: " + e.getKeyChar());
-            }
-
-            @Override
-            public void keyReleased(KeyEvent e) {
-                // Not needed for this example
-            }
+    public void start() {
+        mScene.setOnKeyPressed(event -> {
+            System.out.println("Key Pressed: " + event.getCode());
         });
-
-        frame.setVisible(true);
     }
 }
 
