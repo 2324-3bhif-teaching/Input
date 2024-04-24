@@ -1,0 +1,31 @@
+Index: Website/public/script.ts
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>document.addEventListener('DOMContentLoaded', async () => {\r\n   initLogin();\r\n   initInput();\r\n   userID = await fetchRestEndpoint(\"/authenticated\", \"GET\");\r\n   \r\n   if (userID !== undefined) {\r\n       console.log(userID.userId);\r\n   } else {\r\n       console.log(\"not logged in\");\r\n   }\r\n});\r\n\r\nlet userID;\r\nlet loginBTN;\r\nlet regBTN;\r\n\r\nfunction initLogin() {\r\n    loginBTN = document.getElementById('login') as HTMLButtonElement;\r\n    regBTN = document.getElementById('register') as HTMLButtonElement;\r\n    \r\n    loginBTN.addEventListener('click', () => {\r\n        window.location.href = 'http://localhost:3000/login';\r\n    });\r\n\r\n    regBTN.addEventListener('click', () => {\r\n        window.location.href = 'http://localhost:3000/login';\r\n    });\r\n}\r\n\r\nlet deviceId: number = -1;\r\nlet deviceIdInput;\r\nlet submitButton\r\nlet devideID;\r\nlet controlls1;\r\nlet toggleMode;\r\nlet simple;\r\nlet advanced;\r\n\r\nfunction initInput() {\r\n    deviceIdInput = document.getElementById('device-id') as HTMLInputElement;\r\n    devideID = document.getElementById('id-input') as HTMLElement;\r\n    controlls1 = document.getElementById('controlls-1') as HTMLElement;\r\n    submitButton = document.getElementById('id-submit-button') as HTMLButtonElement;\r\n    toggleMode = document.getElementById('toggle') as HTMLInputElement;\r\n    simple = document.getElementById('simple') as HTMLElement;\r\n    advanced = document.getElementById('advanced') as HTMLElement;\r\n    \r\n    addEventListener('change', () => {\r\n        if (simple.style.display === 'block') {\r\n            simple.style.display = 'none';\r\n            advanced.style.display = 'block'\r\n        }\r\n        else {\r\n            simple.style.display = 'block';\r\n            advanced.style.display = 'none'\r\n        }\r\n    });\r\n\r\n    submitButton.addEventListener('click', () => {\r\n        deviceId = parseInt(deviceIdInput.value);\r\n\r\n        if (!isNaN(deviceId)) {\r\n            console.log(`Device ID: ${deviceId}`);\r\n            devideID.style.display = 'none';\r\n            controlls1.style.display = 'block';\r\n        } else {\r\n            deviceIdInput.value = '';\r\n            throw new Error(\"Invalid ID entered\");\r\n        }\r\n    });\r\n}\r\n\r\n\r\n\r\nasync function fetchRestEndpoint(route: string, method: \"GET\" |\"POST\" |\"PUT\" |\"DELETE\", data?: object): Promise<any> {\r\n    let options: any = { method };\r\n    if (data) {\r\n        options.headers = { \"Content-Type\": \"application/json\" };\r\n        options.body = JSON.stringify(data);\r\n    }\r\n    const res = await fetch(route, options);\r\n    if (!res.ok) {\r\n        const error = new Error(`${method} ${res.url} ${res.status} (${res.statusText})`);\r\n        throw error;\r\n    }\r\n    if (res.status !== 204) {\r\n        return await res.json();\r\n    }\r\n}
+===================================================================
+diff --git a/Website/public/script.ts b/Website/public/script.ts
+--- a/Website/public/script.ts	
++++ b/Website/public/script.ts	
+@@ -1,13 +1,13 @@
+ document.addEventListener('DOMContentLoaded', async () => {
+-   initLogin();
+-   initInput();
+-   userID = await fetchRestEndpoint("/authenticated", "GET");
+-   
+-   if (userID !== undefined) {
+-       console.log(userID.userId);
+-   } else {
+-       console.log("not logged in");
+-   }
++    initLogin();
++    initInput();
++    userID = await fetchRestEndpoint("/authenticated", "GET");
++
++    if (userID !== undefined) {
++        console.log(userID.userId);
++    } else {
++        console.log("not logged in");
++    }
+ });
+ 
+ let userID;
