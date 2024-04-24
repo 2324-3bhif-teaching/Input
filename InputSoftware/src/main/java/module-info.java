@@ -4,7 +4,8 @@ module at.helleonding.inputsoftware {
 
     requires org.controlsfx.controls;
     requires org.kordamp.bootstrapfx.core;
+    requires jinput;
 
-    opens at.helleonding.inputsoftware to javafx.fxml;
-    exports at.helleonding.inputsoftware;
+    opens at.htlleonding.inputsoftware to javafx.fxml;
+    exports at.htlleonding.inputsoftware;
 }
