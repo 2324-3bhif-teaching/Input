@@ -1,11 +1,12 @@
-module at.helleonding.inputsoftware {
+module at.helleonding.movingclock {
     requires javafx.controls;
     requires javafx.fxml;
-
-    requires org.controlsfx.controls;
-    requires org.kordamp.bootstrapfx.core;
+    requires java.desktop;
     requires jinput;
 
-    opens at.htlleonding.inputsoftware to javafx.fxml;
-    exports at.htlleonding.inputsoftware;
+
+    opens at.htlleonding.InputSoftware to javafx.fxml;
+    exports at.htlleonding.InputSoftware;
+    exports at.htlleonding.InputSoftware.view;
+    opens at.htlleonding.InputSoftware.view to javafx.fxml;
 }

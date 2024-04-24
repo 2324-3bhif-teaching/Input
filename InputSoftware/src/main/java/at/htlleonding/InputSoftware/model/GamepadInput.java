@@ -1,4 +1,4 @@
-package at.htlleonding.inputsoftware.Model;
+package at.htlleonding.InputSoftware.model;
 
 import net.java.games.input.Controller;
 import net.java.games.input.ControllerEnvironment;
@@ -48,3 +48,6 @@ public class GamepadInput {
         }
     }
 }
+
+
+
