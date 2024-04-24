@@ -8,20 +8,42 @@ Die Roboter können gesteuert werden, jedoch gibt es keine Software um die Robot
 
 
 == Zielsetzung
-- Software
-- Website mit Steuerung
+- Software zur Steuerung
+- Webseite zur Steuerung
+- Login um Einstellungen zu speichern
+- Datenbank um Einstellungen zu speichern
 - Backend um User anzulegen und Einstellungen zu speichern
 - einhalten der Termine
-- Testen und eine Fehlerfreies Projekt
+- Testen und ein fehlerfreies Projekt
 
 == Anforderungen
-- Website mit welcher die Roboter gesteuert werden können
-- Auf der Website können Einstellungen vorgenummen werden wie zum Beispiel den TopSpeed verändern
-- Die Möglichkeit sich anzumelden um Einstellungen zu speichern
-- Eine Software die Inputs von Geräten an einen Server sendet, sodass die Roboter kontrolliert werden können.
-- Eine weitere Software die es ermöglicht Einstellungen zu verändern und zu speichern.
-- Benutzerfreundlich und einfach zu bedienen.
-- Sicherheit der Daten der User sollte gewährleistet sein.
+
+=== Website zur Robotersteuerung und Einstellungen
+
+- Entwicklung einer benutzerfreundlichen Website für die Steuerung der Roboter und die Anpassung von Einstellungen.
+- Möglichkeit, Einstellungen wie den TopSpeed zu ändern.
+- Implementierung einer Anmeldemöglichkeit, um Einstellungen zu speichern.
+- Gewährleistung von Benutzerfreundlichkeit und einfacher Bedienbarkeit.
+- Sicherstellung der Datensicherheit der Benutzer.
+
+=== Input Controller Software
+
+- Entwicklung einer Software, die Inputs von Geräten an einen Server sendet, um die Roboter zu steuern.
+- Gewährleistung einer reibungslosen Kommunikation zwischen der Website und den Robotern über die Input Controller Software.
+
+=== Software zur Einstellungsänderung
+
+- Entwicklung einer separaten Software, die es ermöglicht, Einstellungen zu verändern und zu speichern.
+
+=== Sicherheit und Benutzerfreundlichkeit
+
+- Implementierung von Sicherheitsmaßnahmen, um die Daten der Benutzer zu schützen und die Integrität des Systems zu gewährleisten.
+- Gestaltung der Website und der Softwarekomponenten mit Fokus auf Benutzerfreundlichkeit und einfacher Bedienbarkeit.
+
+=== Server-Implementierung
+
+- Bereitstellung eines Servers zur Speicherung von Benutzereinstellungen und Kontoinformationen.
+- Einrichtung des Servers für eine stabile und sichere Datenverwaltung.
 
 
 == Mengengerüst
@@ -57,10 +79,10 @@ Einrichtung des Servers für eine stabile und sichere Datenverwaltung.
 ====
 Termine
 
-Fertigstellung der Website inclusive login - 30.3.2024
-Input Controller Software - 20.4.2024
-Software um Einstellungen zu verändern - 22.4.2024
-Server implementieren für die Speicherung der Einstellungen und Anmeldung - 22.4.2024
+Fertigstellung der Website inclusive login - 7.5.2024
+Input Controller Software - 30.5.2024
+Software um Einstellungen zu verändern - 15.6.2024
+Server implementieren für die Speicherung der Einstellungen und Anmeldung - 7.5.2024
 ====
 
 ====
