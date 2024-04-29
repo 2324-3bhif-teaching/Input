@@ -28,8 +28,6 @@ public class GamepadInput {
         EventQueue eventQueue = gamepad.getEventQueue();
         Event event = new Event();
 
-        System.out.println("Listening for gamepad input. Press 'Ctrl + C' to exit.");
-
         while (true) {
             gamepad.poll();
             while (eventQueue.getNextEvent(event)) {
