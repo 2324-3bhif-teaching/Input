@@ -34,6 +34,7 @@ public class GamepadInput implements Input {
     @Override
     public boolean checkConnection() {
         Controller[] controllers = ControllerEnvironment.getDefaultEnvironment().getControllers();
+        gamepad = null;
 
         for (Controller controller : controllers) {
             if (controller.getType() == Controller.Type.GAMEPAD || controller.getType() == Controller.Type.STICK) {
@@ -82,5 +83,10 @@ public class GamepadInput implements Input {
         } else {
             System.out.println("Neutral steering with value:" + value);
         }
+    }
+
+    @Override
+    public String toString() {
+        return "Gamepad";
     }
 }

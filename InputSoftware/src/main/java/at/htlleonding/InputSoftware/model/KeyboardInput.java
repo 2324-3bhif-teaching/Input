@@ -73,4 +73,9 @@ public class KeyboardInput implements Input {
     private void stopSteering() {
         System.out.println("Stopping steering");
     }
+
+    @Override
+    public String toString() {
+        return "Keyboard";
+    }
 }

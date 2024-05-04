@@ -1,12 +1,15 @@
 package at.htlleonding.InputSoftware.view;
 
+import at.htlleonding.InputSoftware.model.AppModel;
 import at.htlleonding.InputSoftware.model.Input;
-import at.htlleonding.InputSoftware.model.KeyboardInput;
-import javafx.collections.FXCollections;
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.Scene;
 import javafx.scene.control.ListView;
+import javafx.util.Duration;
 
 public class ViewController {
 
@@ -14,11 +17,23 @@ public class ViewController {
     @FXML
     public ListView deviceListView;
 
-    private ObservableList<Input> devices = FXCollections.observableArrayList();;
+    private Timeline updateTimeline;
 
     public void initialize() {
         System.out.println("Started");
-        deviceListView.setItems(devices);
+    }
+
+    public void createTimeLine(Scene scene) {
+        updateTimeline = new Timeline(
+                new KeyFrame(Duration.seconds(3), event -> updateList(scene))
+        );
+        updateTimeline.setCycleCount(Timeline.INDEFINITE);
+        updateTimeline.play();
+    }
+
+    public void updateList(Scene scene) {
+        ObservableList<Input> list = AppModel.getMe(scene).getDeviceList();
+        deviceListView.setItems(list);
     }
 
     public void handlePlayButton(ActionEvent actionEvent) {
