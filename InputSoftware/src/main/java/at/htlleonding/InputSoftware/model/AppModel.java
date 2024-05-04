@@ -17,8 +17,8 @@ public class AppModel {
 
     private AppModel() {
         mDeviceList = FXCollections.observableArrayList();
-        mInputDeviceList.add(new GamepadInput());
-        mInputDeviceList.add(new KeyboardInput());
+        mInputDeviceList.add(GamepadInput.getMe());
+        mInputDeviceList.add(KeyboardInput.getMe());
     }
 
     public static AppModel getMe() {

@@ -1,10 +1,10 @@
 package at.htlleonding.InputSoftware.model;
 
-import at.htlleonding.InputSoftware.model.Input;
 import javafx.scene.Scene;
 import javafx.scene.input.KeyCode;
 
 public class KeyboardInput implements Input {
+    private static KeyboardInput mMe;
     private KeyCode mForwardKeyCode = KeyCode.W;
     private KeyCode mBackwardKeyCode = KeyCode.S;
     private KeyCode mRightKeyCode = KeyCode.D;
@@ -26,8 +26,15 @@ public class KeyboardInput implements Input {
         mLeftKeyCode = leftKeyCode;
     }
 
-    public KeyboardInput() {
+    private KeyboardInput() {
 
+    }
+
+    public static KeyboardInput getMe() {
+        if (mMe == null) {
+            mMe = new KeyboardInput();
+        }
+        return mMe;
     }
 
     public void start(Scene scene) {
@@ -46,9 +53,9 @@ public class KeyboardInput implements Input {
 
         scene.setOnKeyReleased(event -> {
             KeyCode keyCode = event.getCode();
-            if (keyCode == KeyCode.W || keyCode == KeyCode.S) {
+            if (keyCode == mForwardKeyCode || keyCode == mBackwardKeyCode) {
                 stopMoving();
-            } else if (keyCode == KeyCode.A || keyCode == KeyCode.D) {
+            } else if (keyCode == mLeftKeyCode || keyCode == mRightKeyCode) {
                 stopSteering();
             }
         });

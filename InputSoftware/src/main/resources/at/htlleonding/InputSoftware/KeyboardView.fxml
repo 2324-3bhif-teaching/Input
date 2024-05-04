@@ -9,19 +9,19 @@
             <Label style="-fx-font-size: 20px;" text="Key Bindings" />
             <HBox alignment="CENTER" spacing="10">
                 <Label text="Forward: " />
-                <Button fx:id="forwardButton" text="Change" />
+                <Button fx:id="forwardButton" text="Change" onAction="#changeKeybinding"/>
             </HBox>
             <HBox alignment="CENTER" spacing="10">
                 <Label text="Backward: " />
-                <Button fx:id="backwardButton" text="Change" />
+                <Button fx:id="backwardButton" text="Change" onAction="#changeKeybinding"/>
             </HBox>
             <HBox alignment="CENTER" spacing="10">
                 <Label text="Right: " />
-                <Button fx:id="rightButton" text="Change" />
+                <Button fx:id="rightButton" text="Change" onAction="#changeKeybinding"/>
             </HBox>
             <HBox alignment="CENTER" spacing="10">
                 <Label text="Left: " />
-                <Button fx:id="leftButton" text="Change" />
+                <Button fx:id="leftButton" text="Change" onAction="#changeKeybinding"/>
             </HBox>
         </VBox>
     </center>

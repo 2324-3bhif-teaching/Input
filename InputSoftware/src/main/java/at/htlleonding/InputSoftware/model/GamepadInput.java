@@ -8,11 +8,20 @@ import net.java.games.input.Event;
 import net.java.games.input.EventQueue;
 
 public class GamepadInput implements Input {
+    private static GamepadInput mMe;
     private Controller gamepad;
 
-    public GamepadInput() {
+    private GamepadInput() {
 
     }
+
+    public static GamepadInput getMe() {
+        if (mMe == null) {
+            mMe = new GamepadInput();
+        }
+        return mMe;
+    }
+
 
     public void start(Scene scene) {
         if (gamepad == null) {
