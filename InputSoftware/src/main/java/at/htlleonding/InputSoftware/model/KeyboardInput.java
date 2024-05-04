@@ -5,6 +5,26 @@ import javafx.scene.Scene;
 import javafx.scene.input.KeyCode;
 
 public class KeyboardInput implements Input {
+    private KeyCode mForwardKeyCode = KeyCode.W;
+    private KeyCode mBackwardKeyCode = KeyCode.S;
+    private KeyCode mRightKeyCode = KeyCode.D;
+    private KeyCode mLeftKeyCode = KeyCode.A;
+
+    public void setForwardKeyCode(KeyCode forwardKeyCode) {
+        mForwardKeyCode = forwardKeyCode;
+    }
+
+    public void setBackwardKeyCode(KeyCode backwardKeyCode) {
+        mBackwardKeyCode = backwardKeyCode;
+    }
+
+    public void setRightKeyCode(KeyCode rightKeyCode) {
+        mRightKeyCode = rightKeyCode;
+    }
+
+    public void setLeftKeyCode(KeyCode leftKeyCode) {
+        mLeftKeyCode = leftKeyCode;
+    }
 
     public KeyboardInput() {
 
@@ -13,36 +33,28 @@ public class KeyboardInput implements Input {
     public void start(Scene scene) {
         scene.setOnKeyPressed(event -> {
             KeyCode keyCode = event.getCode();
-            switch (keyCode) {
-                case W:
-                    goForward();
-                    break;
-                case S:
-                    goBackward();
-                    break;
-                case A:
-                    steerLeft();
-                    break;
-                case D:
-                    steerRight();
-                    break;
+            if (keyCode == mForwardKeyCode) {
+                goForward();
+            } else if (keyCode == mBackwardKeyCode) {
+                goBackward();
+            } else if (keyCode == mLeftKeyCode) {
+                steerLeft();
+            } else if (keyCode == mRightKeyCode) {
+                steerRight();
             }
         });
 
         scene.setOnKeyReleased(event -> {
             KeyCode keyCode = event.getCode();
-            switch (keyCode) {
-                case W:
-                case S:
-                    stopMoving();
-                    break;
-                case A:
-                case D:
-                    stopSteering();
-                    break;
+            if (keyCode == KeyCode.W || keyCode == KeyCode.S) {
+                stopMoving();
+            } else if (keyCode == KeyCode.A || keyCode == KeyCode.D) {
+                stopSteering();
             }
         });
     }
+
+
 
     @Override
     public boolean checkConnection() {
