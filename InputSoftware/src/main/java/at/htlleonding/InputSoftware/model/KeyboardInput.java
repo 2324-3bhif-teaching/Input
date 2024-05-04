@@ -5,14 +5,13 @@ import javafx.scene.Scene;
 import javafx.scene.input.KeyCode;
 
 public class KeyboardInput implements Input {
-    private Scene mScene;
 
-    public KeyboardInput(Scene scene) {
-        mScene = scene;
+    public KeyboardInput() {
+
     }
 
-    public void start() {
-        mScene.setOnKeyPressed(event -> {
+    public void start(Scene scene) {
+        scene.setOnKeyPressed(event -> {
             KeyCode keyCode = event.getCode();
             switch (keyCode) {
                 case W:
@@ -30,7 +29,7 @@ public class KeyboardInput implements Input {
             }
         });
 
-        mScene.setOnKeyReleased(event -> {
+        scene.setOnKeyReleased(event -> {
             KeyCode keyCode = event.getCode();
             switch (keyCode) {
                 case W:
@@ -47,7 +46,7 @@ public class KeyboardInput implements Input {
 
     @Override
     public boolean checkConnection() {
-        return mScene != null && mScene.getWindow() != null && mScene.getWindow().isFocused();
+        return true;
     }
 
     private void goForward() {

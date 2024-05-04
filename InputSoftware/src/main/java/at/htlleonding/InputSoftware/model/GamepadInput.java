@@ -1,6 +1,7 @@
 package at.htlleonding.InputSoftware.model;
 
 import at.htlleonding.InputSoftware.model.Input;
+import javafx.scene.Scene;
 import net.java.games.input.Controller;
 import net.java.games.input.ControllerEnvironment;
 import net.java.games.input.Event;
@@ -13,7 +14,7 @@ public class GamepadInput implements Input {
 
     }
 
-    public void start() {
+    public void start(Scene scene) {
         if (gamepad == null) {
             System.out.println("Gamepad not found. Cannot start.");
             return;

@@ -1,5 +1,6 @@
 package at.htlleonding.InputSoftware;
 
+import at.htlleonding.InputSoftware.view.AppView;
 import at.htlleonding.InputSoftware.view.ViewController;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -11,14 +12,15 @@ import java.io.IOException;
 public class Main extends Application {
     @Override
     public void start(Stage stage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("MainView.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 500, 500);
-        stage.setTitle("InputController");
+        AppView.getMe().initialize(stage);
+
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("MainView.fxml"));
+        Scene scene = new Scene(loader.load());
         stage.setScene(scene);
         stage.show();
 
-        ViewController controller = fxmlLoader.getController();
-        controller.createTimeLine(scene);
+        ViewController controller = loader.getController();
+        controller.createTimeLine();
     }
 
     public static void main(String[] args) {

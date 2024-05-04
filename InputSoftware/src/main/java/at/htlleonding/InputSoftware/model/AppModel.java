@@ -15,19 +15,15 @@ public class AppModel {
     private Input mActiveDevice;
     private int mActiveFigureIdx;
 
-    private AppModel(Scene scene) {
+    private AppModel() {
         mDeviceList = FXCollections.observableArrayList();
         mInputDeviceList.add(new GamepadInput());
-        mInputDeviceList.add(new KeyboardInput(scene));
+        mInputDeviceList.add(new KeyboardInput());
     }
 
     public static AppModel getMe() {
-        return mMe;
-    }
-
-    public static AppModel getMe(Scene scene) {
         if (mMe == null) {
-            mMe = new AppModel(scene);
+            mMe = new AppModel();
         }
         return mMe;
     }
