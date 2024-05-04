@@ -17,9 +17,22 @@ public class Main extends Application {
         stage.setTitle("InputController");
         stage.setScene(scene);
         stage.show();
-        KeyboardInput input1 = new KeyboardInput(scene);
-        GamepadInput.Start();
-        //input1.start();
+
+        Thread keyboardThread = new Thread(() -> {
+            KeyboardInput input1 = new KeyboardInput(scene);
+            input1.start();
+        });
+
+        keyboardThread.setDaemon(true);
+        keyboardThread.start();
+
+        Thread gamepadThread = new Thread(() -> {
+            GamepadInput input2 = new GamepadInput();
+            input2.start();
+        });
+
+        gamepadThread.setDaemon(true);
+        gamepadThread.start();
     }
 
     public static void main(String[] args) {

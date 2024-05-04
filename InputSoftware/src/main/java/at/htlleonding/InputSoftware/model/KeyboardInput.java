@@ -6,7 +6,7 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import javax.swing.JFrame;
 
-public class KeyboardInput {
+public class KeyboardInput implements Input{
     private Scene mScene;
 
     public KeyboardInput(Scene scene) {
