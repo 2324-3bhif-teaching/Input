@@ -7,9 +7,7 @@ import net.java.games.input.EventQueue;
 
 public class GamepadInput {
     public static void Start() {
-        ControllerEnvironment controllerEnvironment = ControllerEnvironment.getDefaultEnvironment();
-
-        Controller[] controllers = controllerEnvironment.getControllers();
+        Controller[] controllers = ControllerEnvironment.getDefaultEnvironment().getControllers();
 
         Controller gamepad = null;
         for (Controller controller : controllers) {
@@ -20,8 +18,8 @@ public class GamepadInput {
         }
 
         if (gamepad == null) {
-            System.err.println("No gamepad found.");
-            System.exit(1);
+            System.out.println("No gamepad found.");
+            return;
         }
 
         gamepad.poll();

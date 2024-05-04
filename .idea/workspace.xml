@@ -5,7 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f083482d-c09e-4fef-9293-8e225709d8b0" name="Changes" comment="updated the docs and added Milestones">
-      <change beforePath="$PROJECT_DIR$/InputSoftware/src/main/java/at/htlleonding/InputSoftware/model/GamepadInput.java" beforeDir="false" afterPath="$PROJECT_DIR$/InputSoftware/src/main/java/at/htlleonding/InputSoftware/model/GamepadInput.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -52,6 +52,7 @@
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
     &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
     &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.lookFeel&quot;,
     &quot;ts.external.directory.path&quot;: &quot;C:\\Users\\andre\\AppData\\Local\\Programs\\WebStorm\\plugins\\javascript-impl\\jsLanguageServicesImpl\\external&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
@@ -90,6 +91,8 @@
       <workItem from="1713941311507" duration="95000" />
       <workItem from="1713948827717" duration="13000" />
       <workItem from="1713963526210" duration="36000" />
+      <workItem from="1714647029256" duration="3000" />
+      <workItem from="1714805163256" duration="49000" />
     </task>
     <task id="LOCAL-00001" summary="getting the userID and loggin now works">
       <option name="closed" value="true" />
