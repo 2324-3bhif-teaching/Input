@@ -45,6 +45,11 @@ public class KeyboardInput implements Input {
         });
     }
 
+    @Override
+    public boolean checkConnection() {
+        return mScene != null && mScene.getWindow() != null && mScene.getWindow().isFocused();
+    }
+
     private void goForward() {
         System.out.println("Moving forward");
     }

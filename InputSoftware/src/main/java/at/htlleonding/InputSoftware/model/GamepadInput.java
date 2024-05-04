@@ -10,22 +10,7 @@ public class GamepadInput implements Input {
     private Controller gamepad;
 
     public GamepadInput() {
-        initializeGamepad();
-    }
 
-    private void initializeGamepad() {
-        Controller[] controllers = ControllerEnvironment.getDefaultEnvironment().getControllers();
-
-        for (Controller controller : controllers) {
-            if (controller.getType() == Controller.Type.GAMEPAD || controller.getType() == Controller.Type.STICK) {
-                gamepad = controller;
-                break;
-            }
-        }
-
-        if (gamepad == null) {
-            System.out.println("No gamepad found.");
-        }
     }
 
     public void start() {
@@ -44,6 +29,20 @@ public class GamepadInput implements Input {
                 processEvent(event);
             }
         }
+    }
+
+    @Override
+    public boolean checkConnection() {
+        Controller[] controllers = ControllerEnvironment.getDefaultEnvironment().getControllers();
+
+        for (Controller controller : controllers) {
+            if (controller.getType() == Controller.Type.GAMEPAD || controller.getType() == Controller.Type.STICK) {
+                gamepad = controller;
+                break;
+            }
+        }
+
+        return gamepad != null;
     }
 
     private void processEvent(Event event) {
