@@ -30,7 +30,7 @@
 | Datenbank für Datenspeicherung aufsetzten
 
 | Durchführung
-| 7.05.2024
+| 14.05.2024
 | Datenspeicherung für die Webseite implementieren
 
 | Durchführung
