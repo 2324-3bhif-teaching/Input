@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane fx:id="window" prefHeight="500.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="at.htlleonding.InputSoftware.view.ViewController">
+    <HBox spacing="10">
+        <children>
+            <ListView fx:id="deviceListView" prefHeight="500.0" prefWidth="163.0" HBox.hgrow="ALWAYS">
+            </ListView>
+            <VBox alignment="CENTER" prefHeight="500.0" prefWidth="327.0" spacing="10">
+                <children>
+                    <HBox alignment="CENTER" prefHeight="75.0" prefWidth="340.0" spacing="10">
+                        <children>
+                            <Button fx:id="playButton" onAction="#handlePlayButton" text="Play" />
+                            <TextField fx:id="roboterIdField" maxWidth="0.0" prefHeight="25.0" prefWidth="0.0" promptText="Roboter ID" visible="false" HBox.hgrow="ALWAYS" />
+                            <Button fx:id="startRaceButton" onAction="#handleStartRaceButton" text="Join Race" />
+                        </children>
+                    </HBox>
+                </children>
+            </VBox>
+        </children>
+    </HBox>
+</AnchorPane>
