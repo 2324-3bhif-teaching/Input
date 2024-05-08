@@ -60,7 +60,7 @@ Implementierung einer Anmeldemöglichkeit, um individuelle Einstellungen zu spei
 
 === Input Controller Software:
 Entwicklung einer Software, die Inputs von Geräten an einen Server sendet, um die Roboter zu steuern.
-Gewährleistung einer reibungslosen Kommunikation zwischen der Website und den Robotern über die Input Controller Software.
+Gewährleistung einer reibungslosen Kommunikation zwischen der Software und den Robotern über die Input Controller Software.
 
 === Software zur Einstellungsänderung:
 Entwicklung einer separaten Software, die es ermöglicht, Einstellungen zu verändern und zu speichern.
@@ -79,10 +79,10 @@ Einrichtung des Servers für eine stabile und sichere Datenverwaltung.
 ====
 Termine
 
-Fertigstellung der Website inclusive login - 7.5.2024
+Fertigstellung der Website inclusive login - 14.5.2024
 Input Controller Software - 30.5.2024
 Software um Einstellungen zu verändern - 15.6.2024
-Server implementieren für die Speicherung der Einstellungen und Anmeldung - 7.5.2024
+Server implementieren für die Speicherung der Einstellungen und Anmeldung - 14.5.2024
 ====
 
 ====
