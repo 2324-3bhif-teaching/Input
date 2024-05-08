@@ -7,6 +7,7 @@
     <list default="true" id="f083482d-c09e-4fef-9293-8e225709d8b0" name="Changes" comment="updated the docs and added Milestones">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
+    <list default="true" id="bcfc12b5-02f1-4688-9c05-bdae1d0482f5" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -23,6 +24,10 @@
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
         <entry key="$PROJECT_DIR$" value="andreas/docs" />
+  <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="andreas/website" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -35,6 +40,7 @@
   &quot;associatedIndex&quot;: 7
 }</component>
   <component name="ProjectId" id="2fE5z7yWa70TYdHwlqK0W8ZxQT0" />
+  <component name="ProjectId" id="2eaWbc0IhNMoVyXU5b6o1UPScws" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -71,6 +77,25 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "git-widget-placeholder": "tobias/website",
+    "last_opened_file_path": "C:/HTL3/SYPRRE/SYP-Projekt/Input",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "ts.external.directory.path": "C:\\HTL3\\SYPRRE\\SYP-Projekt\\Input\\Website\\node_modules\\typescript\\lib",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\HTL3\SYPRRE\SYP-Projekt\Input" />
+    </key>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -119,6 +144,20 @@
       <updated>1713940208328</updated>
     </task>
     <option name="localTasksCounter" value="4" />
+      <changelist id="bcfc12b5-02f1-4688-9c05-bdae1d0482f5" name="Changes" comment="" />
+      <created>1712143244417</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1712143244417</updated>
+      <workItem from="1712143248009" duration="1371000" />
+      <workItem from="1713437398253" duration="28000" />
+      <workItem from="1713774418650" duration="161000" />
+      <workItem from="1713774594641" duration="156000" />
+      <workItem from="1713774755331" duration="110000" />
+      <workItem from="1713774866345" duration="106000" />
+      <workItem from="1713774974723" duration="82000" />
+      <workItem from="1713775058375" duration="160000" />
+    </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
