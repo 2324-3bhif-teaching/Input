@@ -32,11 +32,12 @@ public class ViewController {
     }
 
     public void createTimeLine() {
-        updateTimeline = new Timeline(
-                new KeyFrame(Duration.seconds(3), event -> updateList())
-        );
-        updateTimeline.setCycleCount(Timeline.INDEFINITE);
-        updateTimeline.play();
+        updateList();
+//        updateTimeline = new Timeline(
+//                new KeyFrame(Duration.seconds(3), event -> updateList())
+//        );
+//        updateTimeline.setCycleCount(Timeline.INDEFINITE);
+//        updateTimeline.play();
     }
 
     public void updateList() {

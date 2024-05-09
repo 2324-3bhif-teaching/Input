@@ -36,30 +36,35 @@ public class GamepadInput implements Input {
         return gamepad;
     }
 
+    private Thread inputThread = new Thread(() -> {
+        gamepad.poll();
+        EventQueue eventQueue = gamepad.getEventQueue();
+        Event event = new Event();
+
+        while (true) {
+            gamepad.poll();
+            while (eventQueue.getNextEvent(event)) {
+                processEvent(event);
+            }
+        }
+    });
+
     public void start(Scene scene) {
         if (gamepad == null) {
             System.out.println("Gamepad not found. Cannot start.");
             return;
         }
 
-        // Start a new thread for handling input
-        Thread inputThread = new Thread(() -> {
-            gamepad.poll();
-            EventQueue eventQueue = gamepad.getEventQueue();
-            Event event = new Event();
-            System.out.println("started");
+        if (!inputThread.isAlive()) {
+            inputThread.setDaemon(true);
+            inputThread.start();
+        }
+    }
 
-            while (true) {
-                gamepad.poll();
-                while (eventQueue.getNextEvent(event)) {
-                    processEvent(event);
-                }
-            }
-        });
-
-        inputThread.setDaemon(true);
-        System.out.println("started...");
-        inputThread.start();
+    public void stop() {
+        if (inputThread.isAlive()) {
+            inputThread.interrupt();
+        }
     }
 
     @Override
