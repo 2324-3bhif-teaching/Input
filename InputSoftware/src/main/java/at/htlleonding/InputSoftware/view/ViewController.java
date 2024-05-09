@@ -41,6 +41,7 @@ public class ViewController {
 
     public void updateList() {
         ObservableList<Input> list = AppModel.getMe().getDeviceList();
+        System.out.println(AppModel.getMe().getDeviceList());
         deviceListView.setItems(list);
     }
 
