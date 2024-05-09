@@ -1,6 +1,7 @@
 package at.htlleonding.InputSoftware.view;
 
 import at.htlleonding.InputSoftware.model.GamepadInput;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -9,6 +10,7 @@ import net.java.games.input.Event;
 import net.java.games.input.EventQueue;
 
 import java.util.Objects;
+import java.util.concurrent.CompletableFuture;
 
 public class GamePadView {
     @FXML
@@ -26,20 +28,22 @@ public class GamePadView {
     public void changeKeybinding(ActionEvent actionEvent) {
         Button button = (Button) actionEvent.getSource();
 
-        button.setText("Press a key...");
-
         GamepadInput.getMe().stop();
-        String pressedButton = lastPressedButton();
-        button.setText(pressedButton);
 
-        if (button == forwardButton) {
-            GamepadInput.getMe().setKeybind("forward", pressedButton);
-        }
-        else if (button == backwardButton) {
-            GamepadInput.getMe().setKeybind("backward", pressedButton);
-        }
+        button.setText("Press any key...");
 
-        GamepadInput.getMe().start(null);
+        CompletableFuture.runAsync(() -> {
+            String pressedButton = lastPressedButton();
+            Platform.runLater(() -> button.setText(pressedButton));
+
+            if (button == forwardButton) {
+                GamepadInput.getMe().setKeybind("forward", pressedButton);
+            } else if (button == backwardButton) {
+                GamepadInput.getMe().setKeybind("backward", pressedButton);
+            }
+
+            GamepadInput.getMe().start(null);
+        });
     }
 
     public String lastPressedButton() {
