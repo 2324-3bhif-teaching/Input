@@ -15,6 +15,11 @@ public class KeyboardView {
     }
 
     private void loadButtonBindings() {
+        KeyboardInput.getMe().loadKeybinds();
+        forwardButton.setText(KeyboardInput.getMe().getForwardKeyCode().toString());
+        backwardButton.setText(KeyboardInput.getMe().getBackwardKeyCode().toString());
+        rightButton.setText(KeyboardInput.getMe().getRightKeyCode().toString());
+        leftButton.setText(KeyboardInput.getMe().getLeftKeyCode().toString());
     }
 
     public void changeKeybinding(ActionEvent actionEvent) {

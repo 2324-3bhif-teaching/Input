@@ -11,10 +11,6 @@ public class AppModel {
 
     private ObservableList<Input> mDeviceList;
     private ArrayList<Input> mInputDeviceList = new ArrayList<>();
-
-    private Input mActiveDevice;
-    private int mActiveFigureIdx;
-
     private AppModel() {
         mDeviceList = FXCollections.observableArrayList();
         mInputDeviceList.add(GamepadInput.getMe());
@@ -29,7 +25,8 @@ public class AppModel {
     }
 
     public ObservableList<Input> getDeviceList() {
-        mDeviceList = FXCollections.observableArrayList();
+        mDeviceList.clear();
+
         for (Input device : mInputDeviceList) {
             if (device.checkConnection()) {
                 mDeviceList.add(device);
