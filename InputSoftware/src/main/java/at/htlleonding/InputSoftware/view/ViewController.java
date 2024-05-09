@@ -52,6 +52,9 @@ public class ViewController {
             if (selectedItem.toString().equals("Keyboard")) {
                 Scene scene = AppView.getMe().showView("Keyboard", "KeyboardView.fxml");
                 selectedItem.start(scene);
+            } else if (selectedItem.toString().equals("Gamepad")) {
+                Scene scene = AppView.getMe().showView("Gamepad", "GamepadView.fxml");
+                selectedItem.start(scene);
             }
 
             return;

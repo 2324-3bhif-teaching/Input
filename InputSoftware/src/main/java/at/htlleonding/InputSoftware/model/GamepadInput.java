@@ -56,6 +56,11 @@ public class GamepadInput implements Input {
         return gamepad != null;
     }
 
+    @Override
+    public boolean loadKeybinds() {
+        return false;
+    }
+
     private void processEvent(Event event) {
         String componentName = event.getComponent().getName();
         float value = event.getValue();
