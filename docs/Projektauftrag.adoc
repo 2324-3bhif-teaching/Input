@@ -1,0 +1,91 @@
+== Projektauftrag
+
+=== Projektbezeichnung
+Roboter Controller
+
+=== Auftraggeber
+Prof. Aitenbichler
+
+=== Projekthintergrund
+Die Roboter können gesteuert werden, jedoch gibt es keine Software um die Roboter zu verwalten oder einstellungen an der Steuerung vorzunehmen
+
+=== Projektergebnis
+Jeder Roboter hat einen QR Code mit dem man auf eine Internetseite kommt, wo man den Roboter kontrollieren kann. Als zweite Methode könnte man eine Webseite aufrufen und die ID des Roboters eingeben und ihn steuern. Des weiteren gibt es eine Software die Inputs von Input Geräten an einen Server sendet. Man kann auch Einstellungen vornehmen und die Tastenbelegungen ändern und diese werden dann gespeichert.
+
+=== Projektziele
+- Kommunikation mit Server
+- übersichtliche Webseite zum Steuern
+- Speichern der Einstellungen
+- Datenbank aufsetzen
+- Software zum verwalten der Einstellungen
+
+=== Projektbeschreibung
+Die Aufgabe der Webseite ist es dem User zu ermöglichen den Roboter zu steuern und mit der Software sollte jedes Gerät das der User ansteckt zu einem Input für den Roboter werden.
+
+=== Meilensteine
+
+|===
+|Phase |Soll-Termin |Ergebnisse
+
+| Initiierung
+| 30.3.2024
+| Alle Projekdokumente
+
+| Planung
+| 30.3.2024
+| Festlegung der Ziele
+
+| Durchführung
+| 10.04.2024
+| Aufsetzten der Webseite
+
+| Durchführung
+| 10.04.2024
+| Aufsetzten des express Servers
+
+| Durchführung
+| 15.04.2024
+| Design der Webseite implementieren
+
+| Durchführung
+| 17.04.2024
+| Auth0 Login in die Webseite integrieren
+
+| Durchführung
+| 30.04.2024
+| Datenbank für Datenspeicherung aufsetzten
+
+| Durchführung
+| 14.05.2024
+| Datenspeicherung für die Webseite implementieren
+
+| Durchführung
+| 20.05.2024
+| Implementieren der Software zum Roboter Steuern
+
+| Durchführung
+| 30.05.2024
+| Testen und Fehler beheben
+
+|===
+
+=== Projektstart
+Nach der Initierung amd 30.3.2024 wird das Porjekt gestartet
+
+=== Projektende
+Am 1.6.2024 Sollte das Projekt fertig sein
+
+=== Projektressourcen
+- Controller
+- Matte
+- Testhardware
+
+=== Projektrisiken
+- Herausforderungen bei der Entwicklung
+- Kommunikationsprobleme mit dem Server
+- Mangel an Erfahrung in Webseiten designen
+- Änderungen der Anforderung
+
+=== Projektorganisation
+- Andreas Hasenschwandtner
+- Tobias Richter

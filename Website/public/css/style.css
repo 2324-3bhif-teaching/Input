@@ -107,12 +107,92 @@ html {
     left: 60.5%;
 }
 
+#advanced-forward {
+    left: 40%;
+    top: 21.5%;
+}
 
+#advanced-backward {
+    top: 63.5%;
+    left: 40%;
+}
 
+#advanced-left{
+    left: 19.5%;
+    top: 42.5%;
+}
 
+#advanced-right {
+    top: 42.5%;
+    left: 60.5%;
+}
 
+#advanced-forward-right{
+    left: 60.5%;
+    top: 21.5%;
+}
 
+#advanced-forward-left{
+    left: 19.5%;
+    top: 21.5%;
+}
 
+#advanced-backward-left{
+    top: 63.5%;
+    left: 19.5%;
+}
+
+#advanced-backward-right{
+    top: 63.5%;
+    left: 60.5%;
+}
+
+#advanced-middlesection{
+    top: 42.5%;
+    left: 40%;
+}
+
+.arrow {
+    background-color: rgb(49, 45, 45);
+    border: 1px solid #ccc;
+    padding: 10px;
+    font-size: 14px;
+}
+
+.arrow::before {
+    content: "";
+    display: inline-block;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 30px 30px 0 30px;
+    border-color: white transparent transparent transparent;
+    position: relative;
+}
+
+.arrow-left{
+    left: 5%;
+}
+
+.arrow-right{
+    right: 5%;
+}
+
+#advanced-forward-right::before {
+    transform: rotate(-135deg);
+}
+
+#advanced-forward-left::before {
+    transform: rotate(135deg);
+}
+
+#advanced-backward-right::before {
+    transform: rotate(-45deg);
+}
+
+#advanced-backward-left::before {
+    transform: rotate(45deg);
+}
 
 
 
