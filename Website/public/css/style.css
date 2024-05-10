@@ -107,8 +107,6 @@ html {
     left: 60.5%;
 }
 
-/*advance controls*/
-
 #advanced-forward {
     left: 40%;
     top: 21.5%;
@@ -195,10 +193,6 @@ html {
 #advanced-backward-left::before {
     transform: rotate(45deg);
 }
-
-
-
-
 
 
 
