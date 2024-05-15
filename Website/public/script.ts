@@ -2,7 +2,7 @@ document.addEventListener('DOMContentLoaded', async () => {
    initLogin();
    initInput();
    userID = await fetchRestEndpoint("/authenticated", "GET");
-   
+
    if (userID !== undefined) {
        console.log(userID.userId);
    } else {
@@ -17,7 +17,7 @@ let regBTN;
 function initLogin() {
     loginBTN = document.getElementById('login') as HTMLButtonElement;
     regBTN = document.getElementById('register') as HTMLButtonElement;
-    
+
     loginBTN.addEventListener('click', () => {
         window.location.href = 'http://localhost:3000/login';
     });
@@ -44,8 +44,10 @@ function initInput() {
     toggleMode = document.getElementById('toggle') as HTMLInputElement;
     simple = document.getElementById('simple') as HTMLElement;
     advanced = document.getElementById('advanced') as HTMLElement;
-    
-    addEventListener('change', () => {
+    simple.style.display = 'block';
+
+
+    toggleMode.addEventListener('change', () => {
         if (simple.style.display === 'block') {
             simple.style.display = 'none';
             advanced.style.display = 'block'
@@ -68,6 +70,12 @@ function initInput() {
             throw new Error("Invalid ID entered");
         }
     });
+
+    document.querySelectorAll('.control-inputs input').forEach(input => {
+        input.addEventListener('input', (event) => {
+            //console.log(`${event.target.name}: ${event.target.value}`);
+        });
+    });
 }
 
 
@@ -87,3 +95,5 @@ async function fetchRestEndpoint(route: string, method: "GET" |"POST" |"PUT" |"D
         return await res.json();
     }
 }
+
+
