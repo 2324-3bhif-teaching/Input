@@ -61,4 +61,8 @@
 | Tobias Richter
 | 1 Stunde
 
+| Backend, Frontend implementierung Software
+| Tobias Richter
+| 1 Stunde
+
 |===
