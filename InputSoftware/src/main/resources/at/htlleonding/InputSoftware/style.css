@@ -1,0 +1,31 @@
+/* style.css */
+
+.label-text {
+    -fx-font-size: 20px;
+}
+
+.form-label {
+    -fx-font-size: 14px;
+}
+
+.form-button {
+    -fx-font-size: 14px;
+    -fx-padding: 8px 15px;
+    -fx-background-color: #007bff; /* Button background color */
+    -fx-text-fill: white; /* Text color */
+    -fx-border-color: transparent; /* Transparent border */
+    -fx-border-radius: 5px; /* Rounded corners */
+}
+
+.form-button:hover {
+    -fx-background-color: #0056b3; /* Darker background color on hover */
+}
+
+.form-container {
+    -fx-padding: 10px;
+}
+
+.form-spacing {
+    -fx-spacing: 10px;
+}
+

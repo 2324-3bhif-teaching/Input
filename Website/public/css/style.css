@@ -110,7 +110,6 @@ html {
     left: 60.5%;
 }
 
-/*advance controls*/
 #advanced-forward {
     left: 40%;
     top: 21.5%;
@@ -250,10 +249,6 @@ html {
         margin: 0 auto;
     }
 }
-
-
-
-
 
 .back {
     background: #e2e2e2;
