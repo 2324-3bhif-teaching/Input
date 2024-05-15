@@ -50,6 +50,10 @@ public class ViewController {
         if (roboterIdField.isVisible()) {
             Input selectedItem = (Input) deviceListView.getSelectionModel().getSelectedItem();
 
+            if(selectedItem == null) {
+                return;
+            }
+
             System.out.println(selectedItem.toString());
             if (selectedItem.toString().equals("Keyboard")) {
                 Scene scene = AppView.getMe().showView("Keyboard", "KeyboardView.fxml");

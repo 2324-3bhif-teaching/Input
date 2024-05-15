@@ -57,38 +57,44 @@
                     <content>
                         <VBox alignment="CENTER" prefHeight="307.0" prefWidth="144.0" spacing="10" BorderPane.alignment="CENTER" styleClass="form-container">
                             <VBox alignment="CENTER_LEFT" spacing="10" styleClass="form-spacing">
-                                <Label text="Acceleration: " styleClass="form-label"/>
-                                <ComboBox fx:id="acceleration" styleClass="form-button">
-                                    <items>
-                                        <FXCollections fx:factory="observableArrayList">
-                                            <String fx:value="100" />
-                                            <String fx:value="75" />
-                                            <String fx:value="50" />
-                                            <String fx:value="25" />
-                                        </FXCollections>
-                                    </items>
-                                </ComboBox>
-                                <Label text="Max Speed: " styleClass="form-label"/>
-                                <ComboBox fx:id="maxSpeed" styleClass="form-button">
-                                    <items>
-                                        <FXCollections fx:factory="observableArrayList">
-                                            <String fx:value="100" />
-                                            <String fx:value="75" />
-                                            <String fx:value="50" />
-                                            <String fx:value="25" />
-                                        </FXCollections>
-                                    </items>
-                                </ComboBox>
-                                <Label text="Steering: " styleClass="form-label"/>
-                                <ComboBox fx:id="steering" styleClass="form-button">
-                                    <items>
-                                        <FXCollections fx:factory="observableArrayList">
-                                            <String fx:value="100%" />
-                                            <String fx:value="75%" />
-                                            <String fx:value="50%" />
-                                        </FXCollections>
-                                    </items>
-                                </ComboBox>
+                                <HBox>
+                                    <Label text="Acceleration: " styleClass="form-label"/>
+                                    <ComboBox fx:id="acceleration" styleClass="form-button">
+                                        <items>
+                                            <FXCollections fx:factory="observableArrayList">
+                                                <String fx:value="100" />
+                                                <String fx:value="75" />
+                                                <String fx:value="50" />
+                                                <String fx:value="25" />
+                                            </FXCollections>
+                                        </items>
+                                    </ComboBox>
+                                </HBox>
+                                <HBox>
+                                    <Label text="Max Speed: " styleClass="form-label"/>
+                                    <ComboBox fx:id="maxSpeed" styleClass="form-button">
+                                        <items>
+                                            <FXCollections fx:factory="observableArrayList">
+                                                <String fx:value="100" />
+                                                <String fx:value="75" />
+                                                <String fx:value="50" />
+                                                <String fx:value="25" />
+                                            </FXCollections>
+                                        </items>
+                                    </ComboBox>
+                                </HBox>
+                                <HBox>
+                                    <Label text="Steering: " styleClass="form-label"/>
+                                    <ComboBox fx:id="steering" styleClass="form-button">
+                                        <items>
+                                            <FXCollections fx:factory="observableArrayList">
+                                                <String fx:value="100%" />
+                                                <String fx:value="75%" />
+                                                <String fx:value="50%" />
+                                            </FXCollections>
+                                        </items>
+                                    </ComboBox>
+                                </HBox>
                             </VBox>
                         </VBox>
                     </content>
