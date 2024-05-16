@@ -1,6 +1,7 @@
 import { auth } from "express-openid-connect";
 import express from 'express';
 import path from "path";
+import {raceManagementRouter} from "./RaceManagement";
 
 const app = express();
 const config = {
@@ -13,6 +14,7 @@ const config = {
 };
 
 app.use(auth(config));
+app.use("/api/raceManagement", raceManagementRouter);
 app.use(express.static(path.join(__dirname, '../public')));
 
 app.get('/authenticated', (req, res) => {
