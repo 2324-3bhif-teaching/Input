@@ -57,7 +57,7 @@ public class GamePadView {
                 gamepad.poll();
                 while (eventQueue.getNextEvent(event)) {
                     String button = event.getComponent().getName();
-                    if (!Objects.equals(button, "X-Achse") && !Objects.equals(button, "Y-Achse")) {
+                    if (!Objects.equals(button, "X-Achse") && !Objects.equals(button, "Y-Achse") && !Objects.equals(button, "Z-Achse") && !Objects.equals(button, "Z-Rotation")) {
                         return event.getComponent().getName();
                     }
                 }

@@ -1,44 +1,108 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
+<?import javafx.collections.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
+<?import java.net.URL?>
 <BorderPane prefHeight="307.0" prefWidth="351.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="at.htlleonding.InputSoftware.view.KeyboardView">
-   <left>
-        <VBox alignment="CENTER" prefHeight="307.0" prefWidth="144.0" spacing="10" BorderPane.alignment="CENTER">
-            <Label style="-fx-font-size: 20px;" text="Key Bindings" />
-            <HBox alignment="CENTER_LEFT" spacing="10">
-                <Label text="Forward: " />
-                <Button fx:id="forwardButton" onAction="#changeKeybinding" text="Change" textAlignment="CENTER">
-               <HBox.margin>
-                  <Insets left="9.0" />
-               </HBox.margin></Button>
-            </HBox>
-            <HBox alignment="CENTER_LEFT" spacing="10">
-                <Label text="Backward: " />
-                <Button fx:id="backwardButton" onAction="#changeKeybinding" text="Change" />
-            </HBox>
-            <HBox alignment="CENTER_LEFT" spacing="10">
-                <Label text="Right: " />
-                <Button fx:id="rightButton" onAction="#changeKeybinding" text="Change">
-               <HBox.margin>
-                  <Insets left="23.0" />
-               </HBox.margin></Button>
-            </HBox>
-            <HBox alignment="CENTER_LEFT" spacing="10">
-                <Label text="Left: " />
-                <Button fx:id="leftButton" onAction="#changeKeybinding" text="Change">
-               <HBox.margin>
-                  <Insets left="31.0" />
-               </HBox.margin></Button>
-            </HBox>
-         <BorderPane.margin>
-            <Insets />
-         </BorderPane.margin>
-         <padding>
-            <Insets left="10.0" />
-         </padding>
-        </VBox>
-   </left>
+    <stylesheets>
+        <URL value="@style.css" />
+    </stylesheets>
+    <top>
+        <SplitPane dividerPositions="0.5" prefHeight="51.0" prefWidth="351.0" BorderPane.alignment="CENTER">
+            <items>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+                    <children>
+                        <Label layoutX="29.0" layoutY="10.0" styleClass="label-text" text="Settings" />
+                    </children>
+                </AnchorPane>
+            </items>
+        </SplitPane>
+    </top>
+    <center>
+        <TabPane>
+            <tabs>
+                <Tab text="Key Bindings">
+                    <content>
+                        <VBox alignment="CENTER" prefHeight="307.0" prefWidth="144.0" spacing="10" BorderPane.alignment="CENTER" styleClass="form-container">
+                            <HBox alignment="CENTER_LEFT" spacing="10" styleClass="form-spacing">
+                                <Label text="Forward: " styleClass="form-label"/>
+                                <Button fx:id="forwardButton" onAction="#changeKeybinding" text="Change" textAlignment="CENTER" styleClass="form-button">
+                                    <HBox.margin>
+                                        <Insets left="9.0" />
+                                    </HBox.margin>
+                                </Button>
+                            </HBox>
+                            <HBox alignment="CENTER_LEFT" spacing="10" styleClass="form-spacing">
+                                <Label text="Backward: " styleClass="form-label"/>
+                                <Button fx:id="backwardButton" onAction="#changeKeybinding" text="Change" styleClass="form-button"/>
+                            </HBox>
+                            <HBox alignment="CENTER_LEFT" spacing="10" styleClass="form-spacing">
+                                <Label text="Right: " styleClass="form-label"/>
+                                <Button fx:id="rightButton" onAction="#changeKeybinding" text="Change" styleClass="form-button">
+                                    <HBox.margin>
+                                        <Insets left="23.0" />
+                                    </HBox.margin>
+                                </Button>
+                            </HBox>
+                            <HBox alignment="CENTER_LEFT" spacing="10" styleClass="form-spacing">
+                                <Label text="Left: " styleClass="form-label"/>
+                                <Button fx:id="leftButton" onAction="#changeKeybinding" text="Change" styleClass="form-button">
+                                    <HBox.margin>
+                                        <Insets left="31.0" />
+                                    </HBox.margin>
+                                </Button>
+                            </HBox>
+                            <padding>
+                                <Insets left="10.0" />
+                            </padding>
+                        </VBox>
+                    </content>
+                </Tab>
+                <Tab text="Gameplay Settings">
+                    <content>
+                        <VBox alignment="CENTER" prefHeight="307.0" prefWidth="144.0" spacing="10" BorderPane.alignment="CENTER" styleClass="form-container">
+                            <VBox alignment="CENTER_LEFT" spacing="10" styleClass="form-spacing">
+                                <Label text="Acceleration: " styleClass="form-label"/>
+                                <ComboBox fx:id="acceleration" styleClass="form-button">
+                                    <items>
+                                        <FXCollections fx:factory="observableArrayList">
+                                            <String fx:value="100" />
+                                            <String fx:value="75" />
+                                            <String fx:value="50" />
+                                            <String fx:value="25" />
+                                        </FXCollections>
+                                    </items>
+                                </ComboBox>
+                                <Label text="Max Speed: " styleClass="form-label"/>
+                                <ComboBox fx:id="maxSpeed" styleClass="form-button">
+                                    <items>
+                                        <FXCollections fx:factory="observableArrayList">
+                                            <String fx:value="100" />
+                                            <String fx:value="75" />
+                                            <String fx:value="50" />
+                                            <String fx:value="25" />
+                                        </FXCollections>
+                                    </items>
+                                </ComboBox>
+                                <Label text="Steering: " styleClass="form-label"/>
+                                <ComboBox fx:id="steering" styleClass="form-button">
+                                    <items>
+                                        <FXCollections fx:factory="observableArrayList">
+                                            <String fx:value="100%" />
+                                            <String fx:value="75%" />
+                                            <String fx:value="50%" />
+                                        </FXCollections>
+                                    </items>
+                                </ComboBox>
+                            </VBox>
+                        </VBox>
+                    </content>
+                </Tab>
+            </tabs>
+        </TabPane>
+    </center>
 </BorderPane>
