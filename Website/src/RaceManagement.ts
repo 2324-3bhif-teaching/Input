@@ -19,15 +19,7 @@ const robots: Robot[] = [
 
 export const raceManagementRouter = Router();
 
-const wss = new WebSocket.Server({ port: 8080 }); // Set your WebSocket server port
-
-wss.on('connection', function connection(ws) {
-    console.log('WebSocket client connected');
-
-    ws.on('message', function incoming(message) {
-        console.log('received: %s', message);
-    });
-});
+const socket = new WebSocket('ws://localhost:8080');
 
 const findRobot = (deviceId: string | null, inputDeviceId: string | null): Robot | undefined => {
     return robots.find(robot => robot.inputDeviceId === inputDeviceId);
@@ -45,11 +37,7 @@ raceManagementRouter.post('/input', (req, res) => {
     }
 
     if (input.deviceId) {
-        wss.clients.forEach(function each(client) {
-            if (client.readyState === WebSocket.OPEN) {
-                client.send(JSON.stringify(input));
-            }
-        });
+        socket.send(JSON.stringify(input));
     } else if (input.inputDeviceId) {
         const roboter: Robot | undefined = findRobot(input.deviceId, input.inputDeviceId);
         
@@ -57,11 +45,7 @@ raceManagementRouter.post('/input', (req, res) => {
             const newInput: Input = {deviceId: roboter.id, inputDeviceId: roboter.inputDeviceId, direction: input.direction};   
         }
         
-        wss.clients.forEach(function each(client) {
-            if (client.readyState === WebSocket.OPEN) {
-                client.send(JSON.stringify(input));
-            }
-        });
+        socket.send(JSON.stringify(input));
     }
     
     res.status(200).send();
