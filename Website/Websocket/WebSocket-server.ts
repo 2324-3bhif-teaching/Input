@@ -4,12 +4,16 @@ const wss = new WebSocketServer({ port: 8080 });
 
 wss.on('connection', (ws: WebSocket) => {
     console.log('New client connected');
-    ws.send(JSON.stringify({ type: 'input', data: { deviceId: '123', inputDeviceId: '456', direction: 'left' } }));
+    ws.send(JSON.stringify({ deviceId: '123', inputDeviceId: '456', direction: 'left' }));
 
     ws.on('message', (message: string) => {
-        console.log('Received:', message);
+        console.log('Received:', message.toString());
         
-        ws.send(`Server: ${message}`);
+        wss.clients.forEach(client => {
+            if (client !== ws && client.readyState === WebSocket.OPEN) {
+                client.send(message.toString());
+            }
+        });
     });
     
     ws.on('close', () => {

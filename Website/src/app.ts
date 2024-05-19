@@ -16,6 +16,7 @@ const config = {
 app.use(auth(config));
 app.use("/api/raceManagement", raceManagementRouter);
 app.use(express.static(path.join(__dirname, '../public')));
+app.use(express.json());
 
 app.get('/authenticated', (req, res) => {
     if (req.oidc.isAuthenticated()) {

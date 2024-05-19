@@ -1,9 +1,10 @@
 const ws = new WebSocket('ws://localhost:8080');
 
 ws.onmessage = (event) => {
+    console.log(event.data);
     try {
         const message = JSON.parse(event.data);
-        handleInputMessage(message.data);
+        handleInputMessage(message);
     }    catch (e) {
         handleNotificationMessage(event.data);
     }
