@@ -3,7 +3,14 @@ import express from 'express';
 import path from "path";
 import {raceManagementRouter} from "./RaceManagement";
 
+import cors from "cors";
+
 const app = express();
+
+app.use(cors({
+    origin: 'http://localhost:3001' // Allow requests from this origin
+}));
+
 const config = {
     authRequired: false,
     auth0Logout: true,

@@ -4,35 +4,25 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Race Management System</title>
+    <script>var exports = {};</script>
     <script type="module" src="WebSocket.js"></script>
-    <style>
-        table {
-            border-collapse: collapse;
-            width: 100%;
-        }
-        th, td {
-            border: 1px solid #dddddd;
-            text-align: left;
-            padding: 8px;
-        }
-        th {
-            background-color: #f2f2f2;
-        }
-    </style>
+    <script type="module" src="script.js"></script>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-<h1>Race Management System</h1>
-<table id="inputTable">
-    <thead>
-    <tr>
-        <th>Device ID</th>
-        <th>Input Device ID</th>
-        <th>Direction</th>
-    </tr>
-    </thead>
-    <tbody>
-    <!-- Table rows will be dynamically added here -->
-    </tbody>
-</table>
+<div class="container">
+    <h1>List of Robots</h1>
+    <ul id="robot-list">
+    </ul>
+</div>
+
+<div id="robot-modal" class="modal">
+    <div class="modal-content">
+        <span class="close-button" onclick="closeModal()">&times;</span>
+        <h2 id="robot-name"></h2>
+        <p id="robot-description"></p>
+    </div>
+</div>
 </body>
 </html>
+
