@@ -1,4 +1,4 @@
-interface Robot {
+export interface Robot {
     id: string,
     front: boolean,
     back: boolean,
@@ -7,7 +7,7 @@ interface Robot {
     speed: number,
 }
 
-const robots: Robot[] = [];
+export const robots: Robot[] = [];
 
 document.addEventListener('DOMContentLoaded', async () => {
     await loadRobotList(); 
@@ -86,7 +86,8 @@ export function updateRobotList(roboter: string, command: string): void {
 }
 
 function showRobotDetails(id: string): void {
-
+    const detailsUrl = `roboter?id=${id}`;
+    window.open(detailsUrl, '_blank');
 }
 
 function closeModal() {
