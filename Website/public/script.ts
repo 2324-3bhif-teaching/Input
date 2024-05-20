@@ -76,6 +76,68 @@ function initInput() {
             //console.log(`${event.target.name}: ${event.target.value}`);
         });
     });
+
+    document.addEventListener('DOMContentLoaded', function () {
+        let intervalId = null;
+
+        function sendSignal(direction) {
+            const data = { message: `${direction} button pressed` };
+
+            fetch('http://localhost:3000', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data)
+            })
+                .then(response => response.json())
+                .then(data => {
+                    console.log('Success:', data);
+                })
+                .catch((error) => {
+                    console.error('Error:', error);
+                });
+        }
+
+        function startSendingSignal(direction) {
+            if (intervalId) return; // If already sending signals, do nothing
+
+            intervalId = setInterval(() => {
+                sendSignal(direction);
+            }, 500);
+        }
+
+        function stopSendingSignal() {
+            if (intervalId) {
+                clearInterval(intervalId);
+                intervalId = null;
+            }
+        }
+
+        const buttons = document.querySelectorAll('.control-button');
+
+        buttons.forEach(button => {
+            const direction = button.textContent;
+
+            button.addEventListener('mousedown', function () {
+                startSendingSignal(direction);
+            });
+
+            button.addEventListener('mouseup', stopSendingSignal);
+            button.addEventListener('mouseleave', stopSendingSignal);
+
+            button.addEventListener('touchstart', function () {
+                startSendingSignal(direction);
+            });
+
+            button.addEventListener('touchend', stopSendingSignal);
+            button.addEventListener('touchcancel', stopSendingSignal);
+        });
+
+        document.addEventListener('mouseup', stopSendingSignal);
+        document.addEventListener('touchend', stopSendingSignal);
+        document.addEventListener('touchcancel', stopSendingSignal);
+    });
 }
 
 
