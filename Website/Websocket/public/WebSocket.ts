@@ -1,17 +1,29 @@
+import {updateRobotList} from "./script.js";
+
 const ws = new WebSocket('ws://localhost:8080');
+
+interface Input {
+    deviceId: string | null;
+    inputDeviceId: string | null;
+    direction: string;
+}
 
 ws.onmessage = (event) => {
     console.log(event.data);
     try {
-        const message = JSON.parse(event.data);
+        const message: Input = JSON.parse(event.data);
         handleInputMessage(message);
+        
+        if (message.deviceId) {
+            updateRobotList(message.deviceId, message.direction);   
+        }
     }    catch (e) {
         handleNotificationMessage(event.data);
     }
 };
 
 function handleInputMessage(input: Input) {
-    addRowToTable(input);
+    console.log(input);
 }
 
 function handleNotificationMessage(notification: string) {
@@ -19,16 +31,6 @@ function handleNotificationMessage(notification: string) {
 }
 
 
-function addRowToTable(input: Input) {
-    const tableBody = document.querySelector('#inputTable tbody') as HTMLTableElement;
-    const row = document.createElement('tr') as HTMLTableRowElement;
-    row.innerHTML = `
-                <td>${input.deviceId}</td>
-                <td>${input.inputDeviceId}</td>
-                <td>${input.direction}</td>
-            `;
-    tableBody.appendChild(row);
-}
 
 interface Input {
     deviceId: string | null;

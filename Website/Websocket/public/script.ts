@@ -1,28 +1,38 @@
-export interface Robot {
-    id: string,
-    front: boolean,
-    back: boolean,
-    left: boolean,
-    right: boolean,
-    speed: number,
+async function fetchRestEndpoint(route: string, method: "GET" | "POST" | "PUT" | "DELETE", data?: object): Promise<any> {
+    let options: any = { method };
+    if (data) {
+        options.headers = { "Content-Type": "application/json" };
+        options.body = JSON.stringify(data);
+    }
+    const res = await fetch(route, options);
+    if (!res.ok) {
+        const error = new Error(`${method} ${route} ${res.status} (${res.statusText})`);
+        throw error;
+    }
+    if (res.status !== 204) {
+        return await res.json();
+    }
 }
 
-export const robots: Robot[] = [];
+interface Robot {
+    id: string;
+    front: boolean;
+    back: boolean;
+    left: boolean;
+    right: boolean;
+    speed: number;
+}
 
-document.addEventListener('DOMContentLoaded', async () => {
-    await loadRobotList(); 
-});
+const robots: Robot[] = [];
 
-
-async function loadRobotList() {
+async function loadRobotList(): Promise<void> {
     const fetchedRobots = await fetchRestEndpoint("http://localhost:3000/api/racemanagement/robots", "GET");
     for (const robot of fetchedRobots) {
-        robots.push({id: robot.id, front: false, back: false, left: false, right: false, speed: 0})
+        robots.push({ id: robot.id, front: false, back: false, left: false, right: false, speed: 0 });
     }
-    
+
     const robotList = document.getElementById('robot-list') as HTMLUListElement;
     robots.forEach(robot => {
-        console.log(robot);
         const li = document.createElement('li');
         li.textContent = `${robot.id} `;
 
@@ -35,10 +45,29 @@ async function loadRobotList() {
     });
 }
 
-export function updateRobotList(roboter: string, command: string): void {
-    const robot = robots.find(r => r.id === roboter);
+function showRobotDetails(id: string): void {
+    const modal = document.getElementById('robot-modal') as HTMLElement;
+    modal.style.display = 'block';
+}
+
+function closeModal(): void {
+    const modal = document.getElementById('robot-modal') as HTMLElement;
+    modal.style.display = 'none';
+}
+
+document.addEventListener('DOMContentLoaded', async () => {
+    await loadRobotList();
+
+    const closeButton = document.querySelector('.close-button') as HTMLButtonElement;
+    closeButton.addEventListener('click', () => {
+        closeModal();
+    });
+});
+
+export function updateRobotList(robotId: string, command: string): void {
+    const robot = robots.find(r => r.id === robotId);
     if (!robot) {
-        console.error(`Robot with id ${roboter} not found`);
+        console.error(`Robot with id ${robotId} not found`);
         return;
     }
 
@@ -83,29 +112,68 @@ export function updateRobotList(roboter: string, command: string): void {
             }
             break;
     }
-}
-
-function showRobotDetails(id: string): void {
-    const detailsUrl = `roboter.html?id=${id}`;
-    window.open(detailsUrl, '_blank');
-}
-
-function closeModal() {
     
+    console.log(robots);
 }
 
-async function fetchRestEndpoint(route: string, method: "GET" |"POST" |"PUT" |"DELETE", data?: object): Promise<any> {
-    let options: any = { method };
-    if (data) {
-        options.headers = { "Content-Type": "application/json" };
-        options.body = JSON.stringify(data);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+const ws = new WebSocket('ws://localhost:8080');
+
+interface Input {
+    deviceId: string | null;
+    inputDeviceId: string | null;
+    direction: string;
+}
+
+ws.onmessage = (event) => {
+    console.log(event.data);
+    try {
+        const message: Input = JSON.parse(event.data);
+        handleInputMessage(message);
+
+        if (message.deviceId) {
+            updateRobotList(message.deviceId, message.direction);
+        }
+    }    catch (e) {
+        handleNotificationMessage(event.data);
     }
-    const res = await fetch(route, options);
-    if (!res.ok) {
-        const error = new Error(`${method} ${res.url} ${res.status} (${res.statusText})`);
-        throw error;
-    }
-    if (res.status !== 204) {
-        return await res.json();
-    }
+};
+
+function handleInputMessage(input: Input) {
+    console.log(input);
+}
+
+function handleNotificationMessage(notification: string) {
+    console.log(notification);
+}
+
+
+
+interface Input {
+    deviceId: string | null;
+    inputDeviceId: string | null;
+    direction: string;
 }

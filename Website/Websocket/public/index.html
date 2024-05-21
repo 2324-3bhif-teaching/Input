@@ -5,22 +5,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Race Management System</title>
     <script>var exports = {};</script>
-    <script type="module" src="WebSocket.js"></script>
     <script type="module" src="script.js"></script>
     <link rel="stylesheet" href="style.css">
-</head>
-<body>
+</head><body>
 <div class="container">
     <h1>List of Robots</h1>
     <ul id="robot-list">
     </ul>
 </div>
 
-<div id="robot-modal" class="modal">
+<div id="robot-modal" class="modal" style="display: none;">
     <div class="modal-content">
-        <span class="close-button" onclick="closeModal()">&times;</span>
-        <h2 id="robot-name"></h2>
-        <p id="robot-description"></p>
+        <span class="close-button">&times;</span>
+        <div id="robot-details">
+            <h2 id="robot-id"></h2>
+            <img id="robot-image" src="">
+        </div>
     </div>
 </div>
 </body>
