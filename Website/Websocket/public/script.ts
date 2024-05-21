@@ -86,7 +86,7 @@ export function updateRobotList(roboter: string, command: string): void {
 }
 
 function showRobotDetails(id: string): void {
-    const detailsUrl = `roboter?id=${id}`;
+    const detailsUrl = `roboter.html?id=${id}`;
     window.open(detailsUrl, '_blank');
 }
 
