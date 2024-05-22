@@ -1,8 +1,16 @@
 import { auth } from "express-openid-connect";
 import express from 'express';
 import path from "path";
+import {raceManagementRouter} from "./RaceManagement";
+
+import cors from "cors";
 
 const app = express();
+
+app.use(cors({
+    origin: 'http://localhost:3001' // Allow requests from this origin
+}));
+
 const config = {
     authRequired: false,
     auth0Logout: true,
@@ -13,7 +21,9 @@ const config = {
 };
 
 app.use(auth(config));
+app.use("/api/raceManagement", raceManagementRouter);
 app.use(express.static(path.join(__dirname, '../public')));
+app.use(express.json());
 
 app.get('/authenticated', (req, res) => {
     if (req.oidc.isAuthenticated()) {
