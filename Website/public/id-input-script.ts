@@ -1,4 +1,6 @@
-let deviceId: number = -1;
+import {fetchRestEndpoint} from "./script.js";
+
+let deviceId: string = "";
 let deviceIdInput: HTMLInputElement;
 let submitButton : HTMLButtonElement;
 let devideID : HTMLElement;
@@ -30,15 +32,14 @@ export function initInput() {
     });
 
     submitButton.addEventListener('click', () => {
-        deviceId = parseInt(deviceIdInput.value);
+        deviceId = deviceIdInput.value;
 
-        if (!isNaN(deviceId)) {
+        if (true) {
             console.log(`Device ID: ${deviceId}`);
             devideID.style.display = 'none';
             controlls1.style.display = 'block';
         } else {
-            deviceIdInput.value = '';
-            throw new Error("Invalid ID entered");
+            
         }
     });
 
@@ -48,16 +49,34 @@ export function initInput() {
         htmlButton.addEventListener('mouseup', handleButtonRelease);
     });
     
-    function handleButtonPress(event: MouseEvent) {
+    async function handleButtonPress(event: MouseEvent) {
         const button = event.currentTarget as HTMLButtonElement;
         console.log(`${button.id} pressed`);
 
+        if (button.id == "forward") {
+            await fetchRestEndpoint("api/racemanagement/input", "POST", {deviceId: deviceId, inputDeviceId: "", direction: "front"});
+        } else if(button.id == "left") {
+            await fetchRestEndpoint("api/racemanagement/input", "POST", {deviceId: deviceId, inputDeviceId: "", direction: "left"});
+        } else if(button.id == "right") {
+            await fetchRestEndpoint("api/racemanagement/input", "POST", {deviceId: deviceId, inputDeviceId: "", direction: "right"});
+        } else if(button.id == "backward") {
+            await fetchRestEndpoint("api/racemanagement/input", "POST", {deviceId: deviceId, inputDeviceId: "", direction: "back"});
+        }
     }
 
-    function handleButtonRelease(event: MouseEvent) {
+    async function handleButtonRelease(event: MouseEvent) {
         const button = event.currentTarget as HTMLButtonElement;
         console.log(`${button.id} released`);
 
+        if (button.id == "forward") {
+            await fetchRestEndpoint("api/racemanagement/input", "POST", {deviceId: deviceId, inputDeviceId: "", direction: "front-stop"});
+        } else if(button.id == "left") {
+            await fetchRestEndpoint("api/racemanagement/input", "POST", {deviceId: deviceId, inputDeviceId: "", direction: "left-stop"});
+        } else if(button.id == "right") {
+            await fetchRestEndpoint("api/racemanagement/input", "POST", {deviceId: deviceId, inputDeviceId: "", direction: "right-stop"});
+        } else if(button.id == "backward") {
+            await fetchRestEndpoint("api/racemanagement/input", "POST", {deviceId: deviceId, inputDeviceId: "", direction: "back-stop"});
+        }
     }
 
     document.querySelectorAll('.control-inputs input').forEach(input => {

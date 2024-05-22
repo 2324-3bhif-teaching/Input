@@ -52,7 +52,7 @@ raceManagementRouter.post('/input', (req, res) => {
         }
     }
     
-    res.status(200).send();
+    res.status(204).send();
 });
 
 raceManagementRouter.post('/setInputDeviceId', (req, res) => {
