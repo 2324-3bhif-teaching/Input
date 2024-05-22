@@ -30,8 +30,6 @@ function handleNotificationMessage(notification: string) {
     console.log(notification);
 }
 
-
-
 interface Input {
     deviceId: string | null;
     inputDeviceId: string | null;

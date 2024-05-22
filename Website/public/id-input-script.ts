@@ -1,16 +1,34 @@
 let deviceId: number = -1;
-let deviceIdInput;
-let submitButton
-let devideID;
-let controlls1;
+let deviceIdInput: HTMLInputElement;
+let submitButton : HTMLButtonElement;
+let devideID : HTMLElement;
+let controlls1: HTMLElement;
+let toggleMode: HTMLInputElement;
+let simple: HTMLElement;
+let advanced: HTMLElement;
 
 export function initInput() {
     deviceIdInput = document.getElementById('device-id') as HTMLInputElement;
     devideID = document.getElementById('id-input') as HTMLElement;
     controlls1 = document.getElementById('controlls-1') as HTMLElement;
     submitButton = document.getElementById('id-submit-button') as HTMLButtonElement;
+    toggleMode = document.getElementById('toggle') as HTMLInputElement;
+    simple = document.getElementById('simple') as HTMLElement;
+    advanced = document.getElementById('advanced') as HTMLElement;
+    simple.style.display = 'block';
 
-    
+
+    toggleMode.addEventListener('change', () => {
+        if (simple.style.display === 'block') {
+            simple.style.display = 'none';
+            advanced.style.display = 'block'
+        }
+        else {
+            simple.style.display = 'block';
+            advanced.style.display = 'none'
+        }
+    });
+
     submitButton.addEventListener('click', () => {
         deviceId = parseInt(deviceIdInput.value);
 
@@ -23,4 +41,34 @@ export function initInput() {
             throw new Error("Invalid ID entered");
         }
     });
+
+    document.querySelectorAll('.controll-button').forEach(button => {
+        const htmlButton = button as HTMLButtonElement;
+        htmlButton.addEventListener('mousedown', handleButtonPress);
+        htmlButton.addEventListener('mouseup', handleButtonRelease);
+    });
+    
+    function handleButtonPress(event: MouseEvent) {
+        const button = event.currentTarget as HTMLButtonElement;
+        console.log(`${button.id} pressed`);
+
+    }
+
+    function handleButtonRelease(event: MouseEvent) {
+        const button = event.currentTarget as HTMLButtonElement;
+        console.log(`${button.id} released`);
+
+    }
+
+    document.querySelectorAll('.control-inputs input').forEach(input => {
+        input.addEventListener('input', (event) => {
+            //console.log(`${event.target.name}: ${event.target.value}`);
+        });
+    });
+}
+
+interface Input {
+    deviceId: string | null;
+    inputDeviceId: string | null;
+    direction: string;
 }
