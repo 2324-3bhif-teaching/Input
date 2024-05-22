@@ -82,3 +82,7 @@ ul#robot-list li button:hover {
     text-decoration: none;
     cursor: pointer;
 }
+
+#robot-image {
+    width: 100%;
+}

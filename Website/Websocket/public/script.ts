@@ -23,7 +23,7 @@ interface Robot {
     speed: number;
 }
 
-const robots: Robot[] = [];
+let robots: Robot[] = [];
 
 async function loadRobotList(): Promise<void> {
     const fetchedRobots = await fetchRestEndpoint("http://localhost:3000/api/racemanagement/robots", "GET");
@@ -65,12 +65,14 @@ document.addEventListener('DOMContentLoaded', async () => {
 });
 
 export function updateRobotList(robotId: string, command: string): void {
-    const robot = robots.find(r => r.id === robotId);
-    if (!robot) {
+    const index = robots.findIndex(r => r.id === robotId);
+    if (index === -1) {
         console.error(`Robot with id ${robotId} not found`);
         return;
     }
 
+    const robot = robots[index];
+    
     switch (command) {
         case 'front':
             robot.front = true;
@@ -113,5 +115,22 @@ export function updateRobotList(robotId: string, command: string): void {
             break;
     }
     
-    console.log(robots);
+    setRotation(robot);
+}
+
+function setRotation(robot: Robot) {
+    const image = document.getElementById("robot-image") as HTMLImageElement;
+    let rotationAngle = 0;
+
+    if (robot.front) {
+        rotationAngle = 0;
+    } else if (robot.back) {
+        rotationAngle = 180;
+    } else if (robot.left) {
+        rotationAngle = -90;
+    } else if (robot.right) {
+        rotationAngle = 90;
+    }
+    
+    image.style.transform = `rotate(${rotationAngle}deg)`;
 }
