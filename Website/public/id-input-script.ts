@@ -1,15 +1,31 @@
-import {fetchRestEndpoint} from "./script.js";
-
 let deviceId: string = "";
 let deviceIdInput: HTMLInputElement;
-let submitButton : HTMLButtonElement;
-let devideID : HTMLElement;
+let submitButton: HTMLButtonElement;
+let devideID: HTMLElement;
 let controlls1: HTMLElement;
 let toggleMode: HTMLInputElement;
 let simple: HTMLElement;
 let advanced: HTMLElement;
 
-export function initInput() {
+const socket = new WebSocket('ws://localhost:8080');
+
+socket.addEventListener('open', (event) => {
+    console.log('WebSocket connection opened:', event);
+});
+
+socket.addEventListener('message', (event) => {
+    console.log('Message from server:', event.data);
+});
+
+socket.addEventListener('close', (event) => {
+    console.log('WebSocket connection closed:', event);
+});
+
+socket.addEventListener('error', (event) => {
+    console.error('WebSocket error:', event);
+});
+
+export function initInput(): void {
     deviceIdInput = document.getElementById('device-id') as HTMLInputElement;
     devideID = document.getElementById('id-input') as HTMLElement;
     controlls1 = document.getElementById('controlls-1') as HTMLElement;
@@ -19,27 +35,23 @@ export function initInput() {
     advanced = document.getElementById('advanced') as HTMLElement;
     simple.style.display = 'block';
 
-
     toggleMode.addEventListener('change', () => {
         if (simple.style.display === 'block') {
             simple.style.display = 'none';
-            advanced.style.display = 'block'
-        }
-        else {
+            advanced.style.display = 'block';
+        } else {
             simple.style.display = 'block';
-            advanced.style.display = 'none'
+            advanced.style.display = 'none';
         }
     });
 
     submitButton.addEventListener('click', () => {
         deviceId = deviceIdInput.value;
 
-        if (true) {
+        if (deviceId) {
             console.log(`Device ID: ${deviceId}`);
             devideID.style.display = 'none';
             controlls1.style.display = 'block';
-        } else {
-            
         }
     });
 
@@ -48,46 +60,46 @@ export function initInput() {
         htmlButton.addEventListener('mousedown', handleButtonPress);
         htmlButton.addEventListener('mouseup', handleButtonRelease);
     });
-    
-    async function handleButtonPress(event: MouseEvent) {
+
+    function handleButtonPress(event: MouseEvent): void {
         const button = event.currentTarget as HTMLButtonElement;
         console.log(`${button.id} pressed`);
 
-        if (button.id == "forward") {
-            await fetchRestEndpoint("api/racemanagement/input", "POST", {deviceId: deviceId, inputDeviceId: "", direction: "front"});
-        } else if(button.id == "left") {
-            await fetchRestEndpoint("api/racemanagement/input", "POST", {deviceId: deviceId, inputDeviceId: "", direction: "left"});
-        } else if(button.id == "right") {
-            await fetchRestEndpoint("api/racemanagement/input", "POST", {deviceId: deviceId, inputDeviceId: "", direction: "right"});
-        } else if(button.id == "backward") {
-            await fetchRestEndpoint("api/racemanagement/input", "POST", {deviceId: deviceId, inputDeviceId: "", direction: "back"});
+        const directionMap: { [key: string]: string } = {
+            "forward": "front",
+            "left": "left",
+            "right": "right",
+            "backward": "back"
+        };
+
+        const direction = directionMap[button.id];
+        if (direction) {
+            const message = JSON.stringify({ deviceId: deviceId, inputDeviceId: null, direction: direction });
+            socket.send(message);
         }
     }
 
-    async function handleButtonRelease(event: MouseEvent) {
+    function handleButtonRelease(event: MouseEvent): void {
         const button = event.currentTarget as HTMLButtonElement;
         console.log(`${button.id} released`);
 
-        if (button.id == "forward") {
-            await fetchRestEndpoint("api/racemanagement/input", "POST", {deviceId: deviceId, inputDeviceId: "", direction: "front-stop"});
-        } else if(button.id == "left") {
-            await fetchRestEndpoint("api/racemanagement/input", "POST", {deviceId: deviceId, inputDeviceId: "", direction: "left-stop"});
-        } else if(button.id == "right") {
-            await fetchRestEndpoint("api/racemanagement/input", "POST", {deviceId: deviceId, inputDeviceId: "", direction: "right-stop"});
-        } else if(button.id == "backward") {
-            await fetchRestEndpoint("api/racemanagement/input", "POST", {deviceId: deviceId, inputDeviceId: "", direction: "back-stop"});
+        const stopDirectionMap: { [key: string]: string } = {
+            "forward": "front-stop",
+            "left": "left-stop",
+            "right": "right-stop",
+            "backward": "back-stop"
+        };
+
+        const direction = stopDirectionMap[button.id];
+        if (direction) {
+            const message = JSON.stringify({ deviceId: deviceId, inputDeviceId: null, direction: direction });
+            socket.send(message);
         }
     }
 
     document.querySelectorAll('.control-inputs input').forEach(input => {
         input.addEventListener('input', (event) => {
-            //console.log(`${event.target.name}: ${event.target.value}`);
+            console.log(`${(event.target as HTMLInputElement).name}: ${(event.target as HTMLInputElement).value}`);
         });
     });
-}
-
-interface Input {
-    deviceId: string | null;
-    inputDeviceId: string | null;
-    direction: string;
 }
