@@ -73,7 +73,7 @@ Die Aufgabe der Webseite ist es dem User zu ermöglichen den Roboter zu steuern 
 Nach der Initierung amd 30.3.2024 wird das Porjekt gestartet
 
 === Projektende
-Am 1.6.2024 Sollte das Projekt fertig sein
+Am 01.06.2024 Sollte das Projekt fertig sein
 
 === Projektressourcen
 - Controller
@@ -83,7 +83,7 @@ Am 1.6.2024 Sollte das Projekt fertig sein
 === Projektrisiken
 - Herausforderungen bei der Entwicklung
 - Kommunikationsprobleme mit dem Server
-- Mangel an Erfahrung in Webseiten designen
+- Mangel an Erfahrung in Websiten designen
 - Änderungen der Anforderung
 
 === Projektorganisation
