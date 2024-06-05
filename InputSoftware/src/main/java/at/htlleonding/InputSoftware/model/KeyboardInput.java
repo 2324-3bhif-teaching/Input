@@ -150,10 +150,14 @@ public class KeyboardInput implements Input {
 
         scene.setOnKeyReleased(event -> {
             KeyCode keyCode = event.getCode();
-            if (keyCode == mForwardKeyCode || keyCode == mBackwardKeyCode) {
-                stopMoving();
-            } else if (keyCode == mLeftKeyCode || keyCode == mRightKeyCode) {
-                stopSteering();
+            if (keyCode == mForwardKeyCode) {
+                stopMovingForward();
+            } else if (keyCode == mBackwardKeyCode) {
+                stopMovingBackward();
+            } else if (keyCode == mLeftKeyCode) {
+                stopSteeringLeft();
+            } else if (keyCode == mRightKeyCode) {
+                stopSteeringRight();
             }
         });
     }
@@ -200,21 +204,39 @@ public class KeyboardInput implements Input {
         sendMessage(message);
     }
 
-    private void stopMoving() {
-        System.out.println("Stopping movement");
+    private void stopMovingForward() {
+        System.out.println("Stopping forward movement");
         JSONObject message = new JSONObject();
         message.put("deviceId", ViewController.roboterId);
         message.put("inputDeviceId", null);
-        message.put("direction", "stop");
+        message.put("direction", "front-stop");
         sendMessage(message);
     }
 
-    private void stopSteering() {
-        System.out.println("Stopping steering");
+    private void stopMovingBackward() {
+        System.out.println("Stopping backward movement");
         JSONObject message = new JSONObject();
         message.put("deviceId", ViewController.roboterId);
         message.put("inputDeviceId", null);
-        message.put("direction", "stop");
+        message.put("direction", "back-stop");
+        sendMessage(message);
+    }
+
+    private void stopSteeringLeft() {
+        System.out.println("Stopping left steering");
+        JSONObject message = new JSONObject();
+        message.put("deviceId", ViewController.roboterId);
+        message.put("inputDeviceId", null);
+        message.put("direction", "left-stop");
+        sendMessage(message);
+    }
+
+    private void stopSteeringRight() {
+        System.out.println("Stopping right steering");
+        JSONObject message = new JSONObject();
+        message.put("deviceId", ViewController.roboterId);
+        message.put("inputDeviceId", null);
+        message.put("direction", "right-stop");
         sendMessage(message);
     }
 
