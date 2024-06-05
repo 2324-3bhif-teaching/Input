@@ -34,6 +34,9 @@
 | 2 Stunden
 
 | Implementieren des Logins
+| Andreas Hasenschwandtner
+| 1 Stunde
+
 | Frontend entwicklung Webseite
 | Andreas Hasenschwandtner
 | 1 Stunde
@@ -45,5 +48,13 @@
 | Backend implementierung Webseite
 | Andreas Hasenschwandtner
 | 1 Stunde
+
+| Backend implementierung Software
+| Andreas Hasenschwandtner
+| 3 Stunde
+
+| Backend implementierung Software
+| Andreas Hasenschwandtner
+| 30 Minuten
 
 |===
