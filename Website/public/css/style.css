@@ -67,8 +67,11 @@ html {
 .control-buttons-advanced {
     left: 0%;
     width: 100%;
-    aspect-ratio: 1/1;
     display: none;
+}
+
+.control-buttons-advanced button{
+    aspect-ratio: 1/1;
 }
 
 .controll-button {
@@ -106,8 +109,6 @@ html {
     top: 50.5%;
     left: 60.5%;
 }
-
-/*advance controls*/
 
 #advanced-forward {
     left: 40%;
@@ -156,7 +157,6 @@ html {
 
 .arrow {
     background-color: rgb(49, 45, 45);
-    border: 1px solid #ccc;
     padding: 10px;
     font-size: 14px;
 }
@@ -198,10 +198,57 @@ html {
 
 
 
+.control-panel {
+    position: absolute;
+    display: inline-block;
+    text-align: center;
+    left: 3%;
+}
 
+.control-panel label {
+    display: block;
+    margin: 10px 0 5px;
+}
 
+.control-inputs input {
+    width: 100%;
+    padding: 5px;
+    text-align: right;
+}
 
+.id-input, .controlls-1 {
+    margin: 20px 0;
+}
 
+.bottom-bar {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.toggleContainer {
+    display: flex;
+    justify-content: space-between;
+    width: 100px;
+    margin: 0 auto;
+}
+
+@media (max-width: 300px) {
+    .control-panel {
+        width: 50%;
+        padding: 4%;
+
+    }
+
+    .control-inputs input {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+
+    .toggleContainer {
+        width: 100px;
+        margin: 0 auto;
+    }
+}
 
 .back {
     background: #e2e2e2;

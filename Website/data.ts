@@ -28,16 +28,18 @@ export class DB {
 
     private static async ensureTablesCreated(connection: Database): Promise<void> {
 
-        await connection.run(`CREATE TABLE CONTROLLS (
-        id INTEGER PRIMARY KEY
-        )strict `);
-
-        await connection.run(`CREATE TABLE USERS (
+        await connection.run(`CREATE TABLE USER (
         id INTEGER PRIMARY KEY,
-        username TEXT,
-        password TEXT, 
-        FOREIGN KEY (id) REFERENCES CONTROLLS(id)
-        )strict `);
+        settingID INTEGER,
+        FOREIGN KEY (settingID) REFERENCES SETTING(id)
+        ) `);
+
+        await connection.run(`CREATE TABLE SETTING (
+        id INTEGER PRIMARY KEY,
+        maxSpeed VARCHAR(255),
+        acceleration VARCHAR(255),
+        maxSteer VARCHAR(255)
+        )`);
     }
 }
 
