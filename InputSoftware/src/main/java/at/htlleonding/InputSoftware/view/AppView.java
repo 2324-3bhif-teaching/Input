@@ -24,9 +24,11 @@ public class AppView {
         }
         return mMe;
     }
+
     public void initialize(Stage mainStage) {
         mMainStage = mainStage;
     }
+
     public Scene showView(String title, String fxml)  throws IOException {
         FXMLLoader loader = new FXMLLoader(Main.class.getResource(fxml));
         mMainScene = new Scene(loader.load(), 500, 500);

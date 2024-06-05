@@ -4,8 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f083482d-c09e-4fef-9293-8e225709d8b0" name="Changes" comment="updated the docs and added Milestones">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    <list default="true" id="f083482d-c09e-4fef-9293-8e225709d8b0" name="Changes" comment="small changes">
+      <change beforePath="$PROJECT_DIR$/InputSoftware/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/InputSoftware/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/InputSoftware/src/main/java/at/htlleonding/InputSoftware/model/KeyboardInput.java" beforeDir="false" afterPath="$PROJECT_DIR$/InputSoftware/src/main/java/at/htlleonding/InputSoftware/model/KeyboardInput.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/InputSoftware/src/main/java/at/htlleonding/InputSoftware/view/AppView.java" beforeDir="false" afterPath="$PROJECT_DIR$/InputSoftware/src/main/java/at/htlleonding/InputSoftware/view/AppView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/InputSoftware/src/main/java/at/htlleonding/InputSoftware/view/ViewController.java" beforeDir="false" afterPath="$PROJECT_DIR$/InputSoftware/src/main/java/at/htlleonding/InputSoftware/view/ViewController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/InputSoftware/src/main/java/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/InputSoftware/src/main/java/module-info.java" afterDir="false" />
     </list>
     <list default="true" id="bcfc12b5-02f1-4688-9c05-bdae1d0482f5" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
@@ -63,6 +67,18 @@
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Schule\Input\Website\public" />
+      <recent name="C:\Schule\Input\Website\src" />
+      <recent name="C:\Schule\Input\Website\Websocket" />
+      <recent name="C:\Schule\Input\Website\Websocket\public" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Schule\Input\Website\Websocket\public\Hellcat" />
+      <recent name="C:\Schule\Input\Website\Websocket\public" />
+    </key>
+  </component>
   <component name="RunManager">
     <configuration default="true" type="JetRunConfigurationType">
       <module name="Input" />
@@ -167,6 +183,7 @@
     <MESSAGE value="getting the userID and loggin now works" />
     <MESSAGE value="implemented simple advanced checkbox code" />
     <MESSAGE value="updated the docs and added Milestones" />
-    <option name="LAST_COMMIT_MESSAGE" value="updated the docs and added Milestones" />
+    <MESSAGE value="small changes" />
+    <option name="LAST_COMMIT_MESSAGE" value="small changes" />
   </component>
 </project>

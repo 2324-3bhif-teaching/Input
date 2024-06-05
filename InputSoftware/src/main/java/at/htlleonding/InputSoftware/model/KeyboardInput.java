@@ -1,7 +1,10 @@
 package at.htlleonding.InputSoftware.model;
 
+import at.htlleonding.InputSoftware.view.ViewController;
 import javafx.scene.Scene;
 import javafx.scene.input.KeyCode;
+import org.java_websocket.client.WebSocketClient;
+import org.java_websocket.handshake.ServerHandshake;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 
@@ -9,6 +12,8 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.net.URI;
+import java.net.URISyntaxException;
 
 public class KeyboardInput implements Input {
     private static final String CONFIG_FILE = "src/main/java/at/htlleonding/InputSoftware/model/configs/keyboard.json";
@@ -17,6 +22,7 @@ public class KeyboardInput implements Input {
     private KeyCode mBackwardKeyCode = KeyCode.S;
     private KeyCode mRightKeyCode = KeyCode.D;
     private KeyCode mLeftKeyCode = KeyCode.A;
+    private WebSocketClient webSocketClient;
 
     private void saveKeybinds() {
         JSONObject keybinds = new JSONObject();
@@ -93,7 +99,32 @@ public class KeyboardInput implements Input {
     }
 
     private KeyboardInput() {
+        try {
+            webSocketClient = new WebSocketClient(new URI("ws://localhost:8080")) {
+                @Override
+                public void onOpen(ServerHandshake handshakedata) {
+                    System.out.println("WebSocket connection opened");
+                }
 
+                @Override
+                public void onMessage(String message) {
+                    System.out.println("Message from server: " + message);
+                }
+
+                @Override
+                public void onClose(int code, String reason, boolean remote) {
+                    System.out.println("WebSocket connection closed: " + reason);
+                }
+
+                @Override
+                public void onError(Exception ex) {
+                    ex.printStackTrace();
+                }
+            };
+            webSocketClient.connect();
+        } catch (URISyntaxException e) {
+            e.printStackTrace();
+        }
     }
 
     public static KeyboardInput getMe() {
@@ -119,43 +150,99 @@ public class KeyboardInput implements Input {
 
         scene.setOnKeyReleased(event -> {
             KeyCode keyCode = event.getCode();
-            if (keyCode == mForwardKeyCode || keyCode == mBackwardKeyCode) {
-                stopMoving();
-            } else if (keyCode == mLeftKeyCode || keyCode == mRightKeyCode) {
-                stopSteering();
+            if (keyCode == mForwardKeyCode) {
+                stopMovingForward();
+            } else if (keyCode == mBackwardKeyCode) {
+                stopMovingBackward();
+            } else if (keyCode == mLeftKeyCode) {
+                stopSteeringLeft();
+            } else if (keyCode == mRightKeyCode) {
+                stopSteeringRight();
             }
         });
     }
 
-
-
-    @Override
-    public boolean checkConnection() {
-        return true;
+    private void sendMessage(JSONObject message) {
+        if (webSocketClient != null && webSocketClient.isOpen()) {
+            webSocketClient.send(message.toJSONString());
+        }
     }
 
     private void goForward() {
         System.out.println("Moving forward");
+        JSONObject message = new JSONObject();
+        message.put("deviceId", ViewController.roboterId); // Replace with your actual device ID
+        message.put("inputDeviceId", null);
+        message.put("direction", "front");
+        sendMessage(message);
     }
 
     private void goBackward() {
         System.out.println("Moving backward");
+        JSONObject message = new JSONObject();
+        message.put("deviceId", ViewController.roboterId); // Replace with your actual device ID
+        message.put("inputDeviceId", null);
+        message.put("direction", "back");
+        sendMessage(message);
     }
 
     private void steerLeft() {
         System.out.println("Steering left");
+        JSONObject message = new JSONObject();
+        message.put("deviceId", ViewController.roboterId); // Replace with your actual device ID
+        message.put("inputDeviceId", null);
+        message.put("direction", "left");
+        sendMessage(message);
     }
 
     private void steerRight() {
         System.out.println("Steering right");
+        JSONObject message = new JSONObject();
+        message.put("deviceId", ViewController.roboterId);
+        message.put("inputDeviceId", null);
+        message.put("direction", "right");
+        sendMessage(message);
     }
 
-    private void stopMoving() {
-        System.out.println("Stopping movement");
+    private void stopMovingForward() {
+        System.out.println("Stopping forward movement");
+        JSONObject message = new JSONObject();
+        message.put("deviceId", ViewController.roboterId);
+        message.put("inputDeviceId", null);
+        message.put("direction", "front-stop");
+        sendMessage(message);
     }
 
-    private void stopSteering() {
-        System.out.println("Stopping steering");
+    private void stopMovingBackward() {
+        System.out.println("Stopping backward movement");
+        JSONObject message = new JSONObject();
+        message.put("deviceId", ViewController.roboterId);
+        message.put("inputDeviceId", null);
+        message.put("direction", "back-stop");
+        sendMessage(message);
+    }
+
+    private void stopSteeringLeft() {
+        System.out.println("Stopping left steering");
+        JSONObject message = new JSONObject();
+        message.put("deviceId", ViewController.roboterId);
+        message.put("inputDeviceId", null);
+        message.put("direction", "left-stop");
+        sendMessage(message);
+    }
+
+    private void stopSteeringRight() {
+        System.out.println("Stopping right steering");
+        JSONObject message = new JSONObject();
+        message.put("deviceId", ViewController.roboterId);
+        message.put("inputDeviceId", null);
+        message.put("direction", "right-stop");
+        sendMessage(message);
+    }
+
+    @Override
+    public boolean checkConnection() {
+        return webSocketClient != null && webSocketClient.isOpen();
     }
 
     @Override
