@@ -3,6 +3,7 @@ module at.helleonding.movingclock {
     requires javafx.fxml;
     requires java.desktop;
     requires jinput;
+    requires json.simple;
 
 
     opens at.htlleonding.InputSoftware to javafx.fxml;

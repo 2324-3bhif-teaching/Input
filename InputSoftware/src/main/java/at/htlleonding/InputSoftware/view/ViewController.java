@@ -32,15 +32,17 @@ public class ViewController {
     }
 
     public void createTimeLine() {
-        updateTimeline = new Timeline(
-                new KeyFrame(Duration.seconds(3), event -> updateList())
-        );
-        updateTimeline.setCycleCount(Timeline.INDEFINITE);
-        updateTimeline.play();
+        updateList();
+//        updateTimeline = new Timeline(
+//                new KeyFrame(Duration.seconds(3), event -> updateList())
+//        );
+//        updateTimeline.setCycleCount(Timeline.INDEFINITE);
+//        updateTimeline.play();
     }
 
     public void updateList() {
         ObservableList<Input> list = AppModel.getMe().getDeviceList();
+        System.out.println(AppModel.getMe().getDeviceList());
         deviceListView.setItems(list);
     }
 
@@ -48,9 +50,16 @@ public class ViewController {
         if (roboterIdField.isVisible()) {
             Input selectedItem = (Input) deviceListView.getSelectionModel().getSelectedItem();
 
+            if(selectedItem == null) {
+                return;
+            }
+
             System.out.println(selectedItem.toString());
             if (selectedItem.toString().equals("Keyboard")) {
                 Scene scene = AppView.getMe().showView("Keyboard", "KeyboardView.fxml");
+                selectedItem.start(scene);
+            } else if (selectedItem.toString().equals("Gamepad")) {
+                Scene scene = AppView.getMe().showView("Gamepad", "GamepadView.fxml");
                 selectedItem.start(scene);
             }
 
