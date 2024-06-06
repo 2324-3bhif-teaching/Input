@@ -1,4 +1,6 @@
-let deviceId: string = "";
+import {fetchRestEndpoint} from "./script.js";
+
+export let deviceId: string = "";
 let deviceIdInput: HTMLInputElement;
 let submitButton: HTMLButtonElement;
 let devideID: HTMLElement;
@@ -6,6 +8,8 @@ let controlls1: HTMLElement;
 let toggleMode: HTMLInputElement;
 let simple: HTMLElement;
 let advanced: HTMLElement;
+let number: HTMLSpanElement
+export let inputDeviceId: number;
 
 const socket = new WebSocket('ws://localhost:8080');
 
@@ -45,11 +49,17 @@ export function initInput(): void {
         }
     });
 
-    submitButton.addEventListener('click', () => {
+    submitButton.addEventListener('click', async () => {
         deviceId = deviceIdInput.value;
+        console.log("test");
+        number = document.getElementById('number') as HTMLInputElement;
+        inputDeviceId = (await fetchRestEndpoint("http://localhost:3000/api/racemanagement/inputIdNoRobot", "GET")).inputDeviceId;
+        number.textContent = inputDeviceId.toString();
+        const message = JSON.stringify({inputId: number.textContent});
+        socket.send(message);
 
         if (deviceId) {
-            console.log(`Device ID: ${deviceId}`);
+            console.log(`Roboter ID: ${deviceId}`);
             devideID.style.display = 'none';
             controlls1.style.display = 'block';
         }
