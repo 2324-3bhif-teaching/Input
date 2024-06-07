@@ -142,7 +142,8 @@ async function fetchRobotId(inputDeviceId: number): Promise<string> {
     try {
         while (true) {
             try {
-                const response = await fetchRestEndpoint("http://localhost:3000/api/racemanagement/robotID", "POST", { inputDeviceId });
+                const response = await fetchRestEndpoint("http://localhost:3000/api/racemanagement/robotID", "POST", { inputDeviceId: inputDeviceId });
+                console.log(response);
                 if (response.robotId) {
                     return response.robotId;
                 }
