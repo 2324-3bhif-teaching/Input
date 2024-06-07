@@ -44,18 +44,23 @@ raceManagementRouter.get('/robots', (req, res) => {
     res.status(200).json(robots);
 });
 
-raceManagementRouter.get('/inputIdNormal', (req, res) => {
-    for (const robot of robots) {
-        if (robot.inputDeviceId == null) {
-            robot.inputDeviceId = nextId;
-            nextId += 1;
-            res.status(204).send({inputDeviceId: robot.inputDeviceId});
-        }
+const findRobotByInputDeviceId = (inputDeviceId: number | null): Robot | undefined => {
+    return robots.find(robot => robot.inputDeviceId === inputDeviceId);
+};
+
+raceManagementRouter.post('/robotID', (req, res) => {
+    const { inputDeviceId }: { inputDeviceId: number | null } = req.body;
+
+    const robot = findRobotByInputDeviceId(inputDeviceId);
+
+    if (!robot) {
+        return res.status(204).send("No robot found for the provided inputDeviceId");
     }
-    res.status(404);
+
+    res.status(200).json({ robotId: robot.id });
 });
 
-raceManagementRouter.get('/inputIdNoRobot', (req, res) => {
+raceManagementRouter.get('/inputIdRobot', (req, res) => {
     const temp = nextId;
     nextId += 1;
     res.status(200).send({inputDeviceId: temp});

@@ -3,6 +3,7 @@ import {fetchRestEndpoint} from "./script.js";
 export let deviceId: string = "";
 let deviceIdInput: HTMLInputElement;
 let submitButton: HTMLButtonElement;
+let joinButton: HTMLButtonElement
 let devideID: HTMLElement;
 let controlls1: HTMLElement;
 let toggleMode: HTMLInputElement;
@@ -38,6 +39,7 @@ export function initInput(): void {
     simple = document.getElementById('simple') as HTMLElement;
     advanced = document.getElementById('advanced') as HTMLElement;
     simple.style.display = 'block';
+    joinButton = document.getElementById('join-button') as HTMLButtonElement;
 
     toggleMode.addEventListener('change', () => {
         if (simple.style.display === 'block') {
@@ -53,7 +55,7 @@ export function initInput(): void {
         deviceId = deviceIdInput.value;
         console.log("test");
         number = document.getElementById('number') as HTMLInputElement;
-        inputDeviceId = (await fetchRestEndpoint("http://localhost:3000/api/racemanagement/inputIdNoRobot", "GET")).inputDeviceId;
+        inputDeviceId = (await fetchRestEndpoint("http://localhost:3000/api/racemanagement/inputIdRobot", "GET")).inputDeviceId;
         number.textContent = inputDeviceId.toString();
         const message = JSON.stringify({inputId: number.textContent});
         socket.send(message);
@@ -64,6 +66,23 @@ export function initInput(): void {
             controlls1.style.display = 'block';
         }
     });
+
+    joinButton.addEventListener('click', async () => {
+        number = document.getElementById('number') as HTMLInputElement;
+        inputDeviceId = (await fetchRestEndpoint("http://localhost:3000/api/racemanagement/inputIdRobot", "GET")).inputDeviceId;
+        number.textContent = inputDeviceId.toString();
+        const message = JSON.stringify({ inputId: number.textContent });
+        socket.send(message);
+
+        deviceId = await fetchRobotId(inputDeviceId);
+
+        if (deviceId) {
+            console.log(`Robot ID: ${deviceId}`);
+            devideID.style.display = 'none';
+            controlls1.style.display = 'block';
+        }
+    });
+
 
     document.querySelectorAll('.controll-button').forEach(button => {
         const htmlButton = button as HTMLButtonElement;
@@ -112,4 +131,24 @@ export function initInput(): void {
             console.log(`${(event.target as HTMLInputElement).name}: ${(event.target as HTMLInputElement).value}`);
         });
     });
+}
+
+async function fetchRobotId(inputDeviceId: number): Promise<string> {
+    const loadingScreen = document.getElementById('loading-screen') as HTMLElement;
+    loadingScreen.style.display = 'flex';
+    try {
+        while (true) {
+            try {
+                const response = await fetchRestEndpoint("http://localhost:3000/api/racemanagement/robotID", "POST", { inputDeviceId });
+                if (response.robotId) {
+                    return response.robotId;
+                }
+            } catch (error) {
+                
+            }
+            await new Promise(resolve => setTimeout(resolve, 1000)); 
+        }
+    } finally {
+        loadingScreen.style.display = 'none'; 
+    }
 }
