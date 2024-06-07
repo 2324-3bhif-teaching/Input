@@ -135,7 +135,10 @@ export function initInput(): void {
 
 async function fetchRobotId(inputDeviceId: number): Promise<string> {
     const loadingScreen = document.getElementById('loading-screen') as HTMLElement;
+    const loadingScreenId = document.getElementById('loading-text-id') as HTMLElement;
     loadingScreen.style.display = 'flex';
+    loadingScreenId.innerText = inputDeviceId.toString();
+    
     try {
         while (true) {
             try {
