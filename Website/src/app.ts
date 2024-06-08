@@ -37,6 +37,10 @@ app.get('/authenticated', (req, res) => {
     }
 });
 
+app.get('/logout', (req, res) => {
+    res.oidc.logout({ returnTo: 'http://localhost:3000' });
+});
+
 app.listen(3000, () => {
     console.log(`Server is running on port 3000`);
 });
