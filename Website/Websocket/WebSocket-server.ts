@@ -25,6 +25,7 @@ wss.on('connection', (ws: WebSocket) => {
                     console.log(`Updated inputDeviceId to: ${data.inputId}`);
                 }
             } else {
+                console.log("sending");
                 wss.clients.forEach((client) => {
                     if (client !== ws && client.readyState === WebSocket.OPEN) {
                         client.send(message.toString());

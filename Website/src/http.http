@@ -54,5 +54,5 @@ Content-Type: application/json
 
 {
 "robotId": "robot1",
-"inputDeviceId": 2
+"inputDeviceId": 3
 }
