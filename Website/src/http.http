@@ -46,3 +46,13 @@ Content-Type: application/json
 
 ### Retrieve List of Robots
 GET http://localhost:3000/api/raceManagement/robots
+
+
+### Send Input Data to Robot 2
+POST http://localhost:3000/api/raceManagement/setInputDeviceId
+Content-Type: application/json
+
+{
+"robotId": "robot1",
+"inputDeviceId": 3
+}

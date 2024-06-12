@@ -3,7 +3,7 @@
     "server-dev": "npx nodemon src/app.ts",
     "client-dev": "npx tsc --watch --project public",
     "prestart": "npx tsc --project public",
-    "start": "npx ts-node app.ts"
+    "start": "ts-node src/app.ts & ts-node Websocket/app.ts & ts-node Websocket/WebSocket-server.ts"
   },
   "dependencies": {
     "@babel/plugin-transform-modules-commonjs": "^7.24.1",
