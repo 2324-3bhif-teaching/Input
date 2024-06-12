@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.*?>
 
 <?import java.net.URL?>
-<BorderPane prefHeight="307.0" prefWidth="351.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="at.htlleonding.InputSoftware.view.GamePadView">
+<BorderPane prefHeight="307.0" prefWidth="351.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="at.htlleonding.InputSoftware.view.KeyboardView">
     <stylesheets>
         <URL value="@style.css" />
     </stylesheets>

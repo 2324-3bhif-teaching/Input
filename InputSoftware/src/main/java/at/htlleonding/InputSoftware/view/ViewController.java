@@ -26,6 +26,7 @@ public class ViewController {
     public TextField roboterIdField;
 
     private Timeline updateTimeline;
+    public static String roboterId;
 
     public void initialize() {
         System.out.println("Started");
@@ -63,6 +64,8 @@ public class ViewController {
                 selectedItem.start(scene);
             }
 
+            roboterId = roboterIdField.getText();
+            System.out.println(roboterId);
             return;
         }
 

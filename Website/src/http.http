@@ -1,0 +1,58 @@
+### Send Input Data
+POST http://localhost:3000/api/raceManagement/input
+Content-Type: application/json
+
+{
+"deviceId": "robot1",
+"inputDeviceId": "input1",
+"direction": "left"
+}
+
+### Set Input Device ID for Robot 1
+POST http://localhost:3000/api/raceManagement/setInputDeviceId
+Content-Type: application/json
+
+{
+"robotId": "robot1",
+"inputDeviceId": "input1"
+}
+
+### Set Input Device ID for Robot 2
+POST http://localhost:3000/api/raceManagement/setInputDeviceId
+Content-Type: application/json
+
+{
+"robotId": "robot2",
+"inputDeviceId": "input2"
+}
+
+### Send Input Data to Robot 1
+POST http://localhost:3000/api/raceManagement/input
+Content-Type: application/json
+
+{
+"inputDeviceId": "input1",
+"direction": "forward"
+}
+
+### Send Input Data to Robot 2
+POST http://localhost:3000/api/raceManagement/input
+Content-Type: application/json
+
+{
+"inputDeviceId": "input2",
+"direction": "backward"
+}
+
+### Retrieve List of Robots
+GET http://localhost:3000/api/raceManagement/robots
+
+
+### Send Input Data to Robot 2
+POST http://localhost:3000/api/raceManagement/setInputDeviceId
+Content-Type: application/json
+
+{
+"robotId": "robot1",
+"inputDeviceId": 3
+}

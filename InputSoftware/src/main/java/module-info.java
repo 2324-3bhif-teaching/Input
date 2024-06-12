@@ -4,6 +4,7 @@ module at.helleonding.movingclock {
     requires java.desktop;
     requires jinput;
     requires json.simple;
+    requires Java.WebSocket;
 
 
     opens at.htlleonding.InputSoftware to javafx.fxml;
