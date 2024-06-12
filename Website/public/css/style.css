@@ -89,6 +89,53 @@ html {
     background-color: rgb(0, 0, 0);
 }
 
+#login-top, .btn btn-primary, #login{
+    width: 10vw;
+    height: 3vw;
+}
+
+@media (max-width: 1500px) {
+    #login-top, #login {
+        width: 13vw;
+        height: 3vw;
+    }
+}
+
+@media (max-width: 1200px) {
+    #login-top, #login {
+        width: 15vw;
+        height: 4vw;
+    }
+}
+
+@media (max-width: 1150px) {
+    #login-top, #login {
+        width: 20vw;
+        height: 5vw;
+    }
+}
+
+@media (max-width: 770px) {
+    #login-top, #login {
+        width: 29vw;
+        height: 8vw;
+    }
+}
+
+@media (max-width: 540px) {
+    #login-top, #login {
+        width: 40vw;
+        height: 9vw;
+    }
+}
+
+@media (max-width: 400px) {
+    #login-top, #login {
+        width: 50vw;
+        height: 15vw;
+    }
+}
+
 #forward {
     left: 40%;
     top: 29.5%;
@@ -391,15 +438,7 @@ div.content {
     padding: 0;
 }
 
-#login {
-    margin-right: 3%;
-    position: relative;
-    width: 25%;
-    height: 50%;
-    top: 25%;
-    font-size: 50%;
-    padding: 0;
-}
+
 
 #simple-advanced {
     position: absolute;
