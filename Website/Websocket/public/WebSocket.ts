@@ -2,36 +2,34 @@ import {updateRobotList} from "./script.js";
 
 const ws = new WebSocket('ws://localhost:8080');
 
-interface Input {
-    deviceId: string | null;
-    inputDeviceId: string | null;
-    direction: string;
+interface Robot {
+    deviceid: string;
+    front: boolean;
+    back: boolean;
+    left: boolean;
+    right: boolean;
+    direction: number;
+    speed: number;
 }
 
 ws.onmessage = (event) => {
     console.log(event.data);
     try {
-        const message: Input = JSON.parse(event.data);
+        const message: Robot = JSON.parse(event.data);
         handleInputMessage(message);
         
-        if (message.deviceId) {
-            updateRobotList(message.deviceId, message.direction);   
+        if (message.deviceid) {
+            updateRobotList(message.deviceid, message.direction);   
         }
     }    catch (e) {
         handleNotificationMessage(event.data);
     }
 };
 
-function handleInputMessage(input: Input) {
+function handleInputMessage(input: Robot) {
     console.log(input);
 }
 
 function handleNotificationMessage(notification: string) {
     console.log(notification);
-}
-
-interface Input {
-    deviceId: string | null;
-    inputDeviceId: string | null;
-    direction: string;
 }
