@@ -1,5 +1,4 @@
 import { Router, json } from "express";
-import WebSocket from 'ws';
 
 interface Input {
     deviceId: string | null;
@@ -9,7 +8,7 @@ interface Input {
 
 interface Robot {
     id: string;
-    inputDeviceId: string | null;
+    inputDeviceId: number | null;
 }
 
 const robots: Robot[] = [
@@ -17,46 +16,13 @@ const robots: Robot[] = [
     { id: "robot2", inputDeviceId: null },
 ];
 
+let nextId: number = 1;
+
 export const raceManagementRouter = Router();
 raceManagementRouter.use(json());
 
-const socket = new WebSocket('ws://localhost:8080');
-
-
-const findRobot = (deviceId: string | null, inputDeviceId: string | null): Robot | undefined => {
-    return robots.find(robot => robot.inputDeviceId === inputDeviceId);
-};
-
-raceManagementRouter.post('/input', (req, res) => {
-    const input = req.body;
-    console.log(input);
-    if (!input.deviceId && !input.inputDeviceId) {
-        return res.status(400).send("Invalid input data: deviceId or inputDeviceId must be provided");
-    }
-
-    if (!input.direction) {
-        return res.status(400).send("Invalid input data: direction is required");
-    }
-
-    if (input.deviceId) {
-        socket.send(JSON.stringify(input));
-    } else if (input.inputDeviceId) {
-        const roboter: Robot | undefined = findRobot(input.deviceId, input.inputDeviceId);
-        
-        if (roboter) {
-            const newInput: Input = {deviceId: roboter.id, inputDeviceId: roboter.inputDeviceId, direction: input.direction};
-            socket.send(JSON.stringify(newInput));
-        }
-        else {
-            socket.send(JSON.stringify(input));   
-        }
-    }
-    
-    res.status(204).send();
-});
-
 raceManagementRouter.post('/setInputDeviceId', (req, res) => {
-    const { robotId, inputDeviceId }: { robotId: string, inputDeviceId: string | null } = req.body;
+    const { robotId, inputDeviceId }: { robotId: string, inputDeviceId: number | null } = req.body;
 
     const robot = robots.find(robot => robot.id === robotId);
 
@@ -71,3 +37,30 @@ raceManagementRouter.post('/setInputDeviceId', (req, res) => {
 raceManagementRouter.get('/robots', (req, res) => {
     res.status(200).json(robots);
 });
+
+const findRobotByInputDeviceId = (inputDeviceId: number | null): Robot | undefined => {
+    for (const robot of robots) {
+        if (robot.inputDeviceId === inputDeviceId) {
+            console.log(robot);
+            return robot;
+        }
+    }
+};
+
+raceManagementRouter.post('/robotID', (req, res) => {
+    const inputDeviceId: number | null  = req.body.inputDeviceId;
+
+    const robot = findRobotByInputDeviceId(inputDeviceId);
+    if (!robot) {
+        return res.status(204).send("No robot found for the provided inputDeviceId");
+    }
+    
+    res.status(200).json({ robotId: robot.id });
+});
+
+raceManagementRouter.get('/inputIdRobot', (req, res) => {
+    const temp = nextId;
+    nextId += 1;
+    res.status(200).send({inputDeviceId: temp});
+});
+
