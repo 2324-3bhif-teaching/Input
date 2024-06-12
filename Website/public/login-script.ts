@@ -30,7 +30,7 @@ export async function initLogin() {
     updateAuthButtons();
 }
 
-function updateAuthButtons() {
+export function updateAuthButtons() {
     if (userID) {
         loginBTN.style.display = 'none';
         loginTopBTN.style.display = 'none';
