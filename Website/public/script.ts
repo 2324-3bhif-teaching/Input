@@ -1,11 +1,13 @@
 import {initLogin} from "./login-script.js";
 import {initInput} from "./id-input-script.js";
 import {startSettings} from "./settings-script.js";
+import {startSending} from "./MQTT.js";
 
 document.addEventListener('DOMContentLoaded', async () => {
     initInput();
     await initLogin();
     await startSettings();
+    startSending();
 });
 
 export async function fetchRestEndpoint(route: string, method: "GET" |"POST" |"PUT" |"DELETE", data?: object): Promise<any> {

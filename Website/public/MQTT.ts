@@ -1,7 +1,4 @@
-import mqtt, {useMQTT} from "mqtt-vue-hook";
-import {robot} from "./id-input-script";
-import {MqttHook} from "mqtt-vue-hook/dist/hook";
-
+import {robot} from "./id-input-script.js";
 
 const options = {
     clientId: 'virtualts',
@@ -9,17 +6,20 @@ const options = {
     password: 'mqttDevice',
 };
 
-// @ts-ignore
-let mqttHook: MqttHook = new useMQTT();
 
-const client = mqttHook.connect('mqtt://192.168.10.100', options);
+// @ts-ignore
+const client = mqtt.connect('mqtt://192.168.10.100', options);
 
 //60 - 255
 function publishData(data: any) {
-    mqttHook.publish('robot/cmnd/virtualtest/drive', JSON.stringify(data));
+    client.publish('robot/cmnd/virtualtest/drive', JSON.stringify(data));
 }
 
 function handleInputs() {
-    publishData({ duration: 1, speed: robot.speed, direction: robot.direction });
+    publishData({ duration: 250, speed: robot.speed, direction: robot.direction });
     console.log("gefahren");
+}
+
+export function startSending() {
+    setInterval(handleInputs, 250);    
 }
