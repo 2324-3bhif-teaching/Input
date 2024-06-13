@@ -16,10 +16,9 @@ function publishData(data: any) {
 }
 
 function handleInputs() {
-    publishData({ duration: 250, speed: robot.speed, direction: robot.direction });
-    console.log("gefahren");
+    publishData({ duration: 500, speed: robot.speed, direction: robot.direction });
 }
 
 export function startSending() {
-    setInterval(handleInputs, 250);    
+    setInterval(handleInputs, 500);    
 }
