@@ -1,7 +1,7 @@
 import { fetchRestEndpoint } from "./script.js";
 import {startSettings} from "./settings-script.js";
 
-export let userID: string;
+export let userID: string | null;
 let loginBTN: HTMLButtonElement;
 let loginTopBTN: HTMLButtonElement;
 let logoutBTN: HTMLButtonElement;
@@ -29,10 +29,14 @@ export async function initLogin() {
     logoutTopBTN.addEventListener('click', handleLogout);
     returnLogoutBTN.addEventListener('click', handleLogout);
 
-    userID = ((await fetchRestEndpoint("/authenticated", "GET")).userId);
+    try {
+        userID = ((await fetchRestEndpoint("/authenticated", "GET")).userId);
 
+    } catch (e) {
+        userID = null;
+    }
+    
     updateAuthButtons();
-    startSettings();
 }
 
 export function updateAuthButtons() {
@@ -48,5 +52,3 @@ export function updateAuthButtons() {
         logoutTopBTN.style.display = 'none';
     }
 }
-
-document.addEventListener('DOMContentLoaded', initLogin);

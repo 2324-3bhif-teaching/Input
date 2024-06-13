@@ -1,9 +1,11 @@
 import {initLogin} from "./login-script.js";
 import {initInput} from "./id-input-script.js";
+import {startSettings} from "./settings-script.js";
 
 document.addEventListener('DOMContentLoaded', async () => {
-   await initLogin();
-   initInput();
+    initInput();
+    await initLogin();
+    await startSettings();
 });
 
 export async function fetchRestEndpoint(route: string, method: "GET" |"POST" |"PUT" |"DELETE", data?: object): Promise<any> {
