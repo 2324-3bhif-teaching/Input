@@ -77,8 +77,6 @@ export function initInput(): void {
         number = document.getElementById('number') as HTMLInputElement;
         inputDeviceId = (await fetchRestEndpoint("http://localhost:3000/api/racemanagement/inputIdRobot", "GET")).inputDeviceId;
         number.textContent = inputDeviceId.toString();
-        const message = JSON.stringify({ inputId: number.textContent });
-        socket.send(message);
 
         robot.deviceid = deviceId;
 
@@ -93,8 +91,6 @@ export function initInput(): void {
         number = document.getElementById('number') as HTMLInputElement;
         inputDeviceId = (await fetchRestEndpoint("http://localhost:3000/api/racemanagement/inputIdRobot", "GET")).inputDeviceId;
         number.textContent = inputDeviceId.toString();
-        const message = JSON.stringify({ inputId: number.textContent });
-        socket.send(message);
 
         deviceId = await fetchRobotId(inputDeviceId);
 

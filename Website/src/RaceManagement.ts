@@ -1,11 +1,5 @@
 import { Router, json } from "express";
 
-interface Input {
-    deviceId: string | null;
-    inputDeviceId: string | null;
-    direction: string;
-}
-
 interface Robot {
     id: string;
     inputDeviceId: number | null;
