@@ -24,7 +24,7 @@ interface Robot {
     speed: number;
 }
 
-let robot: Robot = {deviceid: deviceId, front: false, back: false, right: false, left: false, direction: 0, speed: 0};
+export let robot: Robot = {deviceid: deviceId, front: false, back: false, right: false, left: false, direction: 0, speed: 0};
 
 socket.addEventListener('open', (event) => {
     console.log('WebSocket connection opened:', event);
