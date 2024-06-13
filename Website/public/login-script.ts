@@ -1,6 +1,7 @@
 import { fetchRestEndpoint } from "./script.js";
+import {startSettings} from "./settings-script.js";
 
-let userID: string;
+export let userID: string;
 let loginBTN: HTMLButtonElement;
 let loginTopBTN: HTMLButtonElement;
 let logoutBTN: HTMLButtonElement;
@@ -28,9 +29,10 @@ export async function initLogin() {
     logoutTopBTN.addEventListener('click', handleLogout);
     returnLogoutBTN.addEventListener('click', handleLogout);
 
-    userID = await fetchRestEndpoint("/authenticated", "GET");
+    userID = ((await fetchRestEndpoint("/authenticated", "GET")).userId);
 
     updateAuthButtons();
+    startSettings();
 }
 
 function updateAuthButtons() {
