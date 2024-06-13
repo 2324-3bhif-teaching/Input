@@ -2,11 +2,13 @@ import {initLogin} from "./login-script.js";
 import {initInput} from "./id-input-script.js";
 import {startSettings} from "./settings-script.js";
 import {startSending} from "./MQTT.js";
+import {startControlling} from "./controll-robot.js";
 
 document.addEventListener('DOMContentLoaded', async () => {
     initInput();
     await initLogin();
     await startSettings();
+    startControlling();
     startSending();
 });
 
