@@ -86,19 +86,16 @@ async function loadRobotList(): Promise<void> {
     });
 }
 
-// Function to display robot details in a modal
 function showRobotDetails(id: string): void {
     const modal = document.getElementById('robot-modal') as HTMLElement;
     modal.style.display = 'block';
 }
 
-// Function to close the modal
 function closeModal(): void {
     const modal = document.getElementById('robot-modal') as HTMLElement;
     modal.style.display = 'none';
 }
 
-// Event listener to load the robot list and setup the close button for the modal
 document.addEventListener('DOMContentLoaded', async () => {
     await loadRobotList();
 

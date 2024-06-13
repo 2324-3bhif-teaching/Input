@@ -34,34 +34,64 @@ class DB {
 
 export async function saveSettings(id: string, acceleration: number, maxSpeed: number, steering: number) {
     const db = await DB.createDBConnection();
-    const existingRow = await db.get('SELECT id FROM Settings WHERE id = ?', id);
+    try {
+        const selectStmt = await db.prepare('SELECT id FROM Settings WHERE id = ?');
+        await selectStmt.bind(id);
+        const existingRow = await selectStmt.get();
+        await selectStmt.finalize();
 
-    if (existingRow) {
-        await db.run(`UPDATE Settings SET acceleration = ?, maxSpeed = ?, steering = ? WHERE id = ?`,
-            acceleration, maxSpeed, steering, id);
-        
-    } else {
-        await db.run(`INSERT INTO Settings (id, acceleration, maxSpeed, steering) VALUES (?, ?, ?, ?)`,
-            id, acceleration, maxSpeed, steering);
+        if (existingRow) {
+            const updateStmt = await db.prepare(
+                'UPDATE Settings SET acceleration = ?, maxSpeed = ?, steering = ? WHERE id = ?'
+            );
+            await updateStmt.bind(acceleration, maxSpeed, steering, id);
+            await updateStmt.run();
+            await updateStmt.finalize();
+        } else {
+            const insertStmt = await db.prepare(
+                'INSERT INTO Settings (id, acceleration, maxSpeed, steering) VALUES (?, ?, ?, ?)'
+            );
+            await insertStmt.bind(id, acceleration, maxSpeed, steering);
+            await insertStmt.run();
+            await insertStmt.finalize();
+        }
+    } catch (error) {
+        console.error('Error saving settings:', error);
+        throw error;
+    } finally {
+        await db.close();
     }
-
-    await db.close();
 }
 
 export async function fetchCurrentSettings(id: string): Promise<{ acceleration: number, maxSpeed: number, steering: number } | null> {
     const db = await DB.createDBConnection();
-    let settings = await db.get('SELECT acceleration, maxSpeed, steering FROM Settings WHERE id = ?', id);
-    
-    if (!settings) {
-        await db.run('INSERT INTO Settings (id, acceleration, maxSpeed, steering) VALUES (?, ?, ?, ?)',
-            id, 0, 0, 0);
-        settings = {
-            acceleration: 0,
-            maxSpeed: 0,
-            steering: 0
-        };
-    }
+    try {
+        const selectStmt = await db.prepare(
+            'SELECT acceleration, maxSpeed, steering FROM Settings WHERE id = ?'
+        );
+        await selectStmt.bind(id);
+        let settings = await selectStmt.get();
+        await selectStmt.finalize();
 
-    await db.close();
-    return settings;
+        if (!settings) {
+            const insertStmt = await db.prepare(
+                'INSERT INTO Settings (id, acceleration, maxSpeed, steering) VALUES (?, ?, ?, ?)'
+            );
+            await insertStmt.bind(id, 0, 0, 0);
+            await insertStmt.run();
+            await insertStmt.finalize();
+            settings = {
+                acceleration: 0,
+                maxSpeed: 0,
+                steering: 0
+            };
+        }
+
+        return settings;
+    } catch (error) {
+        console.error('Error fetching settings:', error);
+        throw error;
+    } finally {
+        await db.close();
+    }
 }
