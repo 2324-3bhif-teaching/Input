@@ -10,6 +10,7 @@
     <script type="module" src="login-script.js"></script>
     <script type="module" src="id-input-script.js"></script>
     <script type="module" src="script.js"></script>
+    <script type="module" src="settings-script.js"></script>
     <title>RoboterController</title>
 </head>
 <body>
@@ -57,20 +58,27 @@
             <button id="advanced-right" class="controll-button">Right</button>
             <button id="advanced-middlesection" class="controll-button"></button>
 
-            <div class="control-panel">
-                <label for="acceleration">Acceleration</label>
-                <input type="number" id="acceleration" name="acceleration" value="100">
+            <button id="openModal" class="openModalControlPanel">Control Panel</button>
 
-                <label for="maxSpeed">Max Speed</label>
-                <input type="number" id="maxSpeed" name="maxSpeed" value="60">
+            <div id="myModal" class="modal">
+                <div class="modal-con">
+                    <span class="close">&times;</span>
+                    <div class="control-panel">
+                        <label for="acceleration">Acceleration</label>
+                        <input type="number" id="acceleration" name="acceleration" value="100">
 
-                <label for="steering">Steering</label>
-                <input type="text" id="steering" name="steering" value="50%">
+                        <label for="maxSpeed">Max Speed</label>
+                        <input type="number" id="maxSpeed" name="maxSpeed" value="60">
+
+                        <label for="steering">Steering</label>
+                        <input type="text" id="steering" name="steering" value="50%">
+                    </div>
+                </div>
             </div>
         </div>
 
         <div class="bottom-bar">
-            <button class="btn btn-danger">Return</button>
+            <button id="return-logout" class="btn btn-danger">Return</button>
             <div id="simple-advanced">
                 <input type="checkbox" id="toggle" class="toggleCheckbox" />
                 <label for="toggle" class='toggleContainer'>
