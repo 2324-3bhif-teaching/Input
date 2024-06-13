@@ -107,15 +107,7 @@ export function startControlling() {
                 robot.speed = 0;
                 break;
             default:
-                const speedMatch = command.match(/^speed:\s*(\d+)$/);
-                if (speedMatch) {
-                    const speedValue = parseInt(speedMatch[1], 10);
-                    if (!isNaN(speedValue)) {
-                        robot.speed = speedValue;
-                    }
-                } else {
-                    console.error(`Invalid command: ${command}`);
-                }
+                robot.speed = 0;
                 break;
         }
 

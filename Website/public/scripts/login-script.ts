@@ -1,5 +1,4 @@
 import { fetchRestEndpoint } from "./script.js";
-import {startSettings} from "./settings-script.js";
 
 export let userID: string | null;
 let loginBTN: HTMLButtonElement;

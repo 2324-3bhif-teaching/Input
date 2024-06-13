@@ -10,7 +10,7 @@ const options = {
 // @ts-ignore
 const client = mqtt.connect('mqtt://192.168.10.100', options);
 
-//60 - 255
+// direction borders = 60 - 255
 function publishData(data: any) {
     client.publish('robot/cmnd/virtualtest/drive', JSON.stringify(data));
 }
