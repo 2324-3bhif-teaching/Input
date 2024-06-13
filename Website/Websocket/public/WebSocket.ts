@@ -19,7 +19,7 @@ ws.onmessage = (event) => {
         handleInputMessage(message);
         
         if (message.deviceid) {
-            updateRobotList(message.deviceid, message.direction);   
+            updateRobotList(message.deviceid, message.direction, message.speed);   
         }
     }    catch (e) {
         handleNotificationMessage(event.data);

@@ -11,7 +11,7 @@ function calculateShortestRotation(current: number, target: number): number {
     return diff;
 }
 
-export function updateRobotList(robotId: string, targetDirection: number): void {
+export function updateRobotList(robotId: string, targetDirection: number, speed: number): void {
     const index = robots.findIndex(r => r.deviceid === robotId);
     if (index === -1) {
         console.error(`Robot with id ${robotId} not found`);
@@ -26,7 +26,16 @@ export function updateRobotList(robotId: string, targetDirection: number): void 
     if (image) {
         image.style.transform = `rotate(${currentDirection}deg)`;
     }
+    
+    updateRobotSpeed(speed);
 }
+
+function updateRobotSpeed(speed: number) {
+    let speedPercentage = (speed / 260) * 100;
+    let speedValue = document.getElementById('speed-value') as HTMLDivElement;
+    speedValue.style.height = `${speedPercentage}%`;
+}
+
 
 async function fetchRestEndpoint(route: string, method: "GET" | "POST" | "PUT" | "DELETE", data?: object): Promise<any> {
     let options: any = { method };

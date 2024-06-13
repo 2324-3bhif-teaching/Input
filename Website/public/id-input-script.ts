@@ -141,59 +141,75 @@ export function initInput(): void {
         switch (command) {
             case 'front':
                 robot.front = true;
+                robot.speed = 240;
                 break;
             case 'front-stop':
                 robot.front = false;
+                robot.speed = 0;
                 break;
             case 'back':
                 robot.back = true;
+                robot.speed = 240;
                 break;
             case 'back-stop':
                 robot.back = false;
+                robot.speed = 0;
                 break;
             case 'left':
                 robot.left = true;
+                robot.speed = 240;
                 break;
             case 'left-stop':
                 robot.left = false;
+                robot.speed = 0;
                 break;
             case 'right':
                 robot.right = true;
+                robot.speed = 240;
                 break;
             case 'right-stop':
                 robot.right = false;
+                robot.speed = 0;
                 break;
             case 'front-left':
                 robot.front = true;
                 robot.left = true;
+                robot.speed = 240;
                 break;
             case 'front-left-stop':
                 robot.front = false;
                 robot.left = false;
+                robot.speed = 0;
                 break;
             case 'front-right':
                 robot.front = true;
                 robot.right = true;
+                robot.speed = 240;
                 break;
             case 'front-right-stop':
                 robot.front = false;
                 robot.right = false;
+                robot.speed = 0;
                 break;
             case 'back-left':
                 robot.back = true;
                 robot.left = true;
+                robot.speed = 240;
                 break;
             case 'back-left-stop':
                 robot.back = false;
                 robot.left = false;
+                robot.speed = 0;
                 break;
             case 'back-right':
                 robot.back = true;
                 robot.right = true;
+                robot.speed = 240;
                 break;
             case 'back-right-stop':
                 robot.back = false;
                 robot.right = false;
+                robot.speed = 0;
                 break;
             default:
                 const speedMatch = command.match(/^speed:\s*(\d+)$/);
