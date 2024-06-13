@@ -35,7 +35,7 @@ export async function initLogin() {
     startSettings();
 }
 
-function updateAuthButtons() {
+export function updateAuthButtons() {
     if (userID) {
         loginBTN.style.display = 'none';
         loginTopBTN.style.display = 'none';

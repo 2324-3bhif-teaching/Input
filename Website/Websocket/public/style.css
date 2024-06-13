@@ -84,5 +84,45 @@ ul#robot-list li button:hover {
 }
 
 #robot-image {
+    transition: transform 0.5s ease-in-out;
+}
+
+
+#robot-details {
+    display: flex;
+    align-items: center;
     width: 100%;
+    margin-top: 20px; 
+}
+
+.robot-info {
+    display: flex;
+    align-items: center;
+    flex: 1; 
+}
+
+#robot-image {
+    max-width: 100%; 
+    height: auto;
+    margin-right: 20px; 
+}
+
+.speed-bar {
+    height: 350px; 
+    width: 20px;
+    background-color: #ddd;
+    border-radius: 5px;
+    margin-left: 20px;
+    position: relative; 
+    overflow: hidden;
+    flex-shrink: 0;
+}
+
+#speed-value {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    background-color: #22f8ff; 
+    transform-origin: bottom; 
+    transition: height 0.3s ease;
 }

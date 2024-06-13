@@ -9,6 +9,16 @@ export interface inputDevice {
 
 const clients: inputDevice[] = [];
 
+interface Robot {
+    deviceid: string;
+    front: boolean;
+    back: boolean;
+    left: boolean;
+    right: boolean;
+    direction: number;
+    speed: number;
+}
+
 wss.on('connection', (ws: WebSocket) => {
     console.log('New client connected');
     clients.push({inputId: null, socket: ws});
