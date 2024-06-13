@@ -85,4 +85,5 @@ ul#robot-list li button:hover {
 
 #robot-image {
     width: 100%;
+    transition: transform 0.5s ease-in-out;
 }
