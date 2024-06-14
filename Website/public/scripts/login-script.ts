@@ -8,6 +8,7 @@ let logoutTopBTN: HTMLButtonElement;
 let returnLogoutBTN: HTMLButtonElement;
 
 export async function initLogin() {
+    
     loginBTN = document.getElementById('login') as HTMLButtonElement;
     logoutBTN = document.getElementById('logout') as HTMLButtonElement;
     loginTopBTN = document.getElementById('login-top') as HTMLButtonElement;
