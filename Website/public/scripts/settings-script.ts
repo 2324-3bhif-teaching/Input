@@ -1,5 +1,5 @@
-import { fetchRestEndpoint } from "./script.js";
-import { userID } from "./login-script.js";
+import { fetchRestEndpoint } from "./script";
+import { userID } from "./login-script";
 
 interface Settings {
     acceleration: number;

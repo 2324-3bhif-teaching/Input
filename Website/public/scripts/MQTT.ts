@@ -1,4 +1,4 @@
-import {robot} from "./id-input-script.js";
+import {robot} from "./id-input-script";
 
 const options = {
     clientId: 'virtualts',

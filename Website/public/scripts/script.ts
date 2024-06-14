@@ -1,8 +1,8 @@
-import {initLogin} from "./login-script.js";
-import {initInput} from "./id-input-script.js";
-import {startSettings} from "./settings-script.js";
-import {startSending} from "./MQTT.js";
-import {startControlling} from "./controll-robot.js";
+import {initLogin} from "./login-script";
+import {initInput} from "./id-input-script";
+import {startSettings} from "./settings-script";
+import {startSending} from "./MQTT";
+import {startControlling} from "./controll-robot";
 
 document.addEventListener('DOMContentLoaded', async () => {
     initInput();

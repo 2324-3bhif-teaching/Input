@@ -1,4 +1,4 @@
-import { fetchRestEndpoint } from "./script.js";
+import { fetchRestEndpoint } from "./script";
 
 export let userID: string | null;
 let loginBTN: HTMLButtonElement;
