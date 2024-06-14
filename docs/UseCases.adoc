@@ -1,1 +1,0 @@
-image::Pictures/UseCases.drawio.png[]

@@ -1,6 +1,7 @@
-import {updateRobotList} from "./script.js";
+import { updateRobotList } from "./script.js";
 
 const ws = new WebSocket('ws://localhost:8080');
+const SECRET_TOKEN = 'JUUUUUDGGGYYYY';
 
 interface Robot {
     deviceid: string;
@@ -12,16 +13,20 @@ interface Robot {
     speed: number;
 }
 
+ws.onopen = () => {
+    ws.send(JSON.stringify({ token: SECRET_TOKEN }));
+};
+
 ws.onmessage = (event) => {
     console.log(event.data);
     try {
         const message: Robot = JSON.parse(event.data);
         handleInputMessage(message);
-        
+
         if (message.deviceid) {
-            updateRobotList(message.deviceid, message.direction);   
+            updateRobotList(message.deviceid, message.direction, message.speed);
         }
-    }    catch (e) {
+    } catch (e) {
         handleNotificationMessage(event.data);
     }
 };

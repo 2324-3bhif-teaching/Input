@@ -1,14 +1,12 @@
 import { fetchRestEndpoint } from "./script.js";
 import { userID } from "./login-script.js";
 
-// Define settings interface
 interface Settings {
     acceleration: number;
     maxSpeed: number;
     steering: number;
 }
 
-// Function to start settings interaction
 export async function startSettings() {
     const acceleration = document.getElementById('acceleration') as HTMLInputElement;
     const maxSpeed = document.getElementById('maxSpeed') as HTMLInputElement;
