@@ -1,35 +1,36 @@
 import { WebSocketServer, WebSocket } from 'ws';
 
 const wss = new WebSocketServer({ port: 8080 });
+const SECRET_TOKEN = 'JUUUUUDGGGYYYY';
+
+let specificClient: WebSocket | null = null;
 
 wss.on('connection', (ws: WebSocket) => {
     console.log('New client connected');
 
     ws.on('message', (message: string) => {
-        console.log('Received:', message.toString());
-        
-        wss.clients.forEach(client => {
-            if (client !== ws && client.readyState === WebSocket.OPEN) {
-                client.send(message.toString());
+        try {
+            const data = JSON.parse(message);
+            if (data.token && data.token === SECRET_TOKEN) {
+                specificClient = ws;
+                console.log('Specific client authenticated');
+                ws.send('Authenticated as the specific client.');
+            } else if (specificClient && specificClient.readyState === WebSocket.OPEN) {
+                specificClient.send(message.toString());
             }
-        });
-    });
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    ws.on('close', () => {
-        console.log('Client disconnected');
+        } catch (e) {
+            console.error('Error parsing message:', e);
+        }
     });
 
-    ws.send('Welcome to the WebSocket server!');
+    ws.on('close', () => {
+        console.log('Client disconnected');
+        if (ws === specificClient) {
+            specificClient = null;
+        }
+    });
+
+    ws.send('Welcome to the WebSocket server! Please authenticate.');
 });
 
 console.log('WebSocket server is running on ws://localhost:8080');

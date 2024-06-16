@@ -4,6 +4,7 @@ import path from "path";
 import {raceManagementRouter} from "./RaceManagement";
 
 import cors from "cors";
+import {settingsRouter} from "./Settings";
 
 const app = express();
 
@@ -22,6 +23,7 @@ const config = {
 
 app.use(auth(config));
 app.use("/api/raceManagement", raceManagementRouter);
+app.use("/api/settings", settingsRouter);
 app.use(express.static(path.join(__dirname, '../public')));
 app.use(express.json());
 
@@ -35,6 +37,10 @@ app.get('/authenticated', (req, res) => {
     } else {
         res.status(204).json({userId: null});
     }
+});
+
+app.get('/logout', (req, res) => {
+    res.oidc.logout({ returnTo: 'http://localhost:3000' });
 });
 
 app.listen(3000, () => {

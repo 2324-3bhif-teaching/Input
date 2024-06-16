@@ -7,22 +7,38 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="css/style.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-    <script type="module" src="login-script.js"></script>
-    <script type="module" src="id-input-script.js"></script>
-    <script type="module" src="script.js"></script>
+    <script src="https://unpkg.com/mqtt/dist/mqtt.min.js"></script>
+    <script type="module" src="./scripts/login-script.js"></script>
+    <script type="module" src="./scripts/id-input-script.js"></script>
+    <script type="module" src="./scripts/script.js"></script>
+    <script type="module" src="./scripts/settings-script.js"></script>
     <title>RoboterController</title>
 </head>
 <body>
     <div class="id-input" id="id-input">
         <input class="input-field" type="text" id="device-id" placeholder="Geräte ID">
         <button class="submit-button" id="id-submit-button">OK</button>
+        <button class="submit-button" id="join-button">JOIN RACE</button>
+        <span class="auth-buttons-top-right">
+            <button id="login-top" class="btn btn-primary">LOGIN - REGISTER</button>
+            <button id="logout-top" class="btn btn-danger" style="display:none;">LOGOUT</button>
+        </span>
     </div>
+    <div id="loading-screen" style="display: none;">
+        <div class="loading-text">
+            <p class="loading-text">Choose your Roboter in the Racemanagement Software</p>
+            <span>device ID: </span>
+            <span id="loading-text-id"></span>
+        </div>
+    </div>
+
     <div class="controlls-1" id="controlls-1">
         <div class="top-bar">
             <span id="number">1991875</span>
             <span id="auth-buttons">
-            <button id="login" class="btn btn-primary">LOGIN</button>
-            <button id="register" class="btn btn-primary">REGISTER</button>
+                <button id="login" class="btn btn-primary">LOGIN - REGISTER</button>
+                <button id="logout" class="btn btn-danger" style="display:none;">LOGOUT</button>
+            </span>
         </span>
         </div>
 
@@ -43,20 +59,27 @@
             <button id="advanced-right" class="controll-button">Right</button>
             <button id="advanced-middlesection" class="controll-button"></button>
 
-            <div class="control-panel">
-                <label for="acceleration">Acceleration</label>
-                <input type="number" id="acceleration" name="acceleration" value="100">
+            <button id="openModal" class="openModalControlPanel">Control Panel</button>
 
-                <label for="maxSpeed">Max Speed</label>
-                <input type="number" id="maxSpeed" name="maxSpeed" value="60">
+            <div id="myModal" class="modal">
+                <div class="modal-con">
+                    <span class="close">&times;</span>
+                    <div class="control-panel">
+                        <label for="acceleration">Acceleration</label>
+                        <input type="number" id="acceleration" name="acceleration" value="100">
 
-                <label for="steering">Steering</label>
-                <input type="text" id="steering" name="steering" value="50%">
+                        <label for="maxSpeed">Max Speed</label>
+                        <input type="number" id="maxSpeed" name="maxSpeed" value="60">
+
+                        <label for="steering">Steering</label>
+                        <input type="text" id="steering" name="steering" value="50%">
+                    </div>
+                </div>
             </div>
         </div>
 
         <div class="bottom-bar">
-            <button class="btn btn-danger">Return</button>
+            <button id="return-logout" class="btn btn-danger">Return</button>
             <div id="simple-advanced">
                 <input type="checkbox" id="toggle" class="toggleCheckbox" />
                 <label for="toggle" class='toggleContainer'>

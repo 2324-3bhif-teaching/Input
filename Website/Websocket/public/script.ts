@@ -1,3 +1,42 @@
+function calculateShortestRotation(current: number, target: number): number {
+    console.log(target, current);
+    let diff = target - current;
+    if (target > 180) {
+        diff -= 360;
+    } else if (diff < -180) {
+        diff += 360;
+    }
+    
+    console.log(diff);
+    return diff;
+}
+
+export function updateRobotList(robotId: string, targetDirection: number, speed: number): void {
+    const index = robots.findIndex(r => r.deviceid === robotId);
+    if (index === -1) {
+        console.error(`Robot with id ${robotId} not found`);
+        return;
+    }
+
+    const robot = robots[index];
+    let currentDirection = robot.currentDirection || 0;
+    currentDirection = calculateShortestRotation(currentDirection, targetDirection);
+    
+    const image = document.getElementById("robot-image") as HTMLImageElement;
+    if (image) {
+        image.style.transform = `rotate(${currentDirection}deg)`;
+    }
+    
+    updateRobotSpeed(speed);
+}
+
+function updateRobotSpeed(speed: number) {
+    let speedPercentage = (speed / 260) * 100;
+    let speedValue = document.getElementById('speed-value') as HTMLDivElement;
+    speedValue.style.height = `${speedPercentage}%`;
+}
+
+
 async function fetchRestEndpoint(route: string, method: "GET" | "POST" | "PUT" | "DELETE", data?: object): Promise<any> {
     let options: any = { method };
     if (data) {
@@ -15,12 +54,14 @@ async function fetchRestEndpoint(route: string, method: "GET" | "POST" | "PUT" |
 }
 
 interface Robot {
-    id: string;
+    deviceid: string;
     front: boolean;
     back: boolean;
     left: boolean;
     right: boolean;
+    direction: number;
     speed: number;
+    currentDirection: number;
 }
 
 let robots: Robot[] = [];
@@ -28,17 +69,17 @@ let robots: Robot[] = [];
 async function loadRobotList(): Promise<void> {
     const fetchedRobots = await fetchRestEndpoint("http://localhost:3000/api/racemanagement/robots", "GET");
     for (const robot of fetchedRobots) {
-        robots.push({ id: robot.id, front: false, back: false, left: false, right: false, speed: 0 });
+        robots.push({ deviceid: robot.id, front: false, back: false, left: false, right: false, direction: 0, speed: 0, currentDirection: 0 });
     }
 
     const robotList = document.getElementById('robot-list') as HTMLUListElement;
     robots.forEach(robot => {
         const li = document.createElement('li');
-        li.textContent = `${robot.id} `;
+        li.textContent = `${robot.deviceid} `;
 
         const button = document.createElement('button');
         button.textContent = 'View Details';
-        button.onclick = () => showRobotDetails(robot.id);
+        button.onclick = () => showRobotDetails(robot.deviceid);
 
         li.appendChild(button);
         robotList.appendChild(li);
@@ -63,74 +104,3 @@ document.addEventListener('DOMContentLoaded', async () => {
         closeModal();
     });
 });
-
-export function updateRobotList(robotId: string, command: string): void {
-    const index = robots.findIndex(r => r.id === robotId);
-    if (index === -1) {
-        console.error(`Robot with id ${robotId} not found`);
-        return;
-    }
-
-    const robot = robots[index];
-    
-    switch (command) {
-        case 'front':
-            robot.front = true;
-            robot.back = false;
-            break;
-        case 'front-stop':
-            robot.front = false;
-            break;
-        case 'back':
-            robot.back = true;
-            robot.front = false;
-            break;
-        case 'back-stop':
-            robot.back = false;
-            break;
-        case 'left':
-            robot.left = true;
-            robot.right = false;
-            break;
-        case 'left-stop':
-            robot.left = false;
-            break;
-        case 'right':
-            robot.right = true;
-            robot.left = false;
-            break;
-        case 'right-stop':
-            robot.right = false;
-            break;
-        default:
-            const speedMatch = command.match(/^speed:\s*(\d+)$/);
-            if (speedMatch) {
-                const speedValue = parseInt(speedMatch[1], 10);
-                if (!isNaN(speedValue)) {
-                    robot.speed = speedValue;
-                }
-            } else {
-                console.error(`Invalid command: ${command}`);
-            }
-            break;
-    }
-    
-    setRotation(robot);
-}
-
-function setRotation(robot: Robot) {
-    const image = document.getElementById("robot-image") as HTMLImageElement;
-    let rotationAngle = 0;
-
-    if (robot.front) {
-        rotationAngle = 0;
-    } else if (robot.back) {
-        rotationAngle = 180;
-    } else if (robot.left) {
-        rotationAngle = -90;
-    } else if (robot.right) {
-        rotationAngle = 90;
-    }
-    
-    image.style.transform = `rotate(${rotationAngle}deg)`;
-}
