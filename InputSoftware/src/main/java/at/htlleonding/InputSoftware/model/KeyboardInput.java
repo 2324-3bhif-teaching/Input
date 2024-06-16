@@ -137,107 +137,70 @@ public class KeyboardInput implements Input {
     public void start(Scene scene) {
         scene.setOnKeyPressed(event -> {
             KeyCode keyCode = event.getCode();
-            if (keyCode == mForwardKeyCode) {
-                goForward();
-            } else if (keyCode == mBackwardKeyCode) {
-                goBackward();
-            } else if (keyCode == mLeftKeyCode) {
-                steerLeft();
-            } else if (keyCode == mRightKeyCode) {
-                steerRight();
-            }
+            handleKeyPress(keyCode);
         });
 
         scene.setOnKeyReleased(event -> {
             KeyCode keyCode = event.getCode();
-            if (keyCode == mForwardKeyCode) {
-                stopMovingForward();
-            } else if (keyCode == mBackwardKeyCode) {
-                stopMovingBackward();
-            } else if (keyCode == mLeftKeyCode) {
-                stopSteeringLeft();
-            } else if (keyCode == mRightKeyCode) {
-                stopSteeringRight();
-            }
+            handleKeyRelease(keyCode);
         });
+    }
+
+    private void handleKeyPress(KeyCode keyCode) {
+        if (keyCode == mForwardKeyCode) {
+            changeMovementState("forward", true);
+        } else if (keyCode == mBackwardKeyCode) {
+            changeMovementState("backward", true);
+        } else if (keyCode == mLeftKeyCode) {
+            changeMovementState("left", true);
+        } else if (keyCode == mRightKeyCode) {
+            changeMovementState("right", true);
+        }
+    }
+
+    private void handleKeyRelease(KeyCode keyCode) {
+        if (keyCode == mForwardKeyCode) {
+            changeMovementState("forward", false);
+        } else if (keyCode == mBackwardKeyCode) {
+            changeMovementState("backward", false);
+        } else if (keyCode == mLeftKeyCode) {
+            changeMovementState("left", false);
+        } else if (keyCode == mRightKeyCode) {
+            changeMovementState("right", false);
+        }
+    }
+
+    private void changeMovementState(String direction, boolean isPressed) {
+        Robot robot = Robot.getMe();
+        switch (direction) {
+            case "forward":
+                robot.setForward(isPressed);
+                break;
+            case "backward":
+                robot.setBackward(isPressed);
+                break;
+            case "left":
+                robot.setLeft(isPressed);
+                break;
+            case "right":
+                robot.setRight(isPressed);
+                break;
+        }
+        sendMessage(createMessage(robot));
+    }
+
+    private JSONObject createMessage(Robot robot) {
+        JSONObject message = new JSONObject();
+        message.put("deviceid", ViewController.roboterId);
+        message.put("speed", robot.getSpeed());
+        message.put("direction", robot.getDirection());
+        return message;
     }
 
     private void sendMessage(JSONObject message) {
         if (webSocketClient != null && webSocketClient.isOpen()) {
             webSocketClient.send(message.toJSONString());
         }
-    }
-
-    private void goForward() {
-        System.out.println("Moving forward");
-        JSONObject message = new JSONObject();
-        message.put("deviceId", ViewController.roboterId); // Replace with your actual device ID
-        message.put("inputDeviceId", null);
-        message.put("direction", "front");
-        sendMessage(message);
-    }
-
-    private void goBackward() {
-        System.out.println("Moving backward");
-        JSONObject message = new JSONObject();
-        message.put("deviceId", ViewController.roboterId); // Replace with your actual device ID
-        message.put("inputDeviceId", null);
-        message.put("direction", "back");
-        sendMessage(message);
-    }
-
-    private void steerLeft() {
-        System.out.println("Steering left");
-        JSONObject message = new JSONObject();
-        message.put("deviceId", ViewController.roboterId); // Replace with your actual device ID
-        message.put("inputDeviceId", null);
-        message.put("direction", "left");
-        sendMessage(message);
-    }
-
-    private void steerRight() {
-        System.out.println("Steering right");
-        JSONObject message = new JSONObject();
-        message.put("deviceId", ViewController.roboterId);
-        message.put("inputDeviceId", null);
-        message.put("direction", "right");
-        sendMessage(message);
-    }
-
-    private void stopMovingForward() {
-        System.out.println("Stopping forward movement");
-        JSONObject message = new JSONObject();
-        message.put("deviceId", ViewController.roboterId);
-        message.put("inputDeviceId", null);
-        message.put("direction", "front-stop");
-        sendMessage(message);
-    }
-
-    private void stopMovingBackward() {
-        System.out.println("Stopping backward movement");
-        JSONObject message = new JSONObject();
-        message.put("deviceId", ViewController.roboterId);
-        message.put("inputDeviceId", null);
-        message.put("direction", "back-stop");
-        sendMessage(message);
-    }
-
-    private void stopSteeringLeft() {
-        System.out.println("Stopping left steering");
-        JSONObject message = new JSONObject();
-        message.put("deviceId", ViewController.roboterId);
-        message.put("inputDeviceId", null);
-        message.put("direction", "left-stop");
-        sendMessage(message);
-    }
-
-    private void stopSteeringRight() {
-        System.out.println("Stopping right steering");
-        JSONObject message = new JSONObject();
-        message.put("deviceId", ViewController.roboterId);
-        message.put("inputDeviceId", null);
-        message.put("direction", "right-stop");
-        sendMessage(message);
     }
 
     @Override

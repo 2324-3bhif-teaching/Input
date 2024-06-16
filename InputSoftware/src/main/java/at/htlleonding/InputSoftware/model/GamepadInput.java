@@ -1,10 +1,13 @@
 package at.htlleonding.InputSoftware.model;
 
+import at.htlleonding.InputSoftware.view.ViewController;
 import javafx.scene.Scene;
 import net.java.games.input.Controller;
 import net.java.games.input.ControllerEnvironment;
 import net.java.games.input.Event;
 import net.java.games.input.EventQueue;
+import org.java_websocket.client.WebSocketClient;
+import org.java_websocket.handshake.ServerHandshake;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 
@@ -12,6 +15,11 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.net.URI;
+import java.net.URISyntaxException;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
 
 public class GamepadInput implements Input {
     private static final String CONFIG_FILE = "src/main/java/at/htlleonding/InputSoftware/model/configs/gamepad.json";
@@ -20,9 +28,40 @@ public class GamepadInput implements Input {
     private static String msteer_Button = "X-Achse";
     private static GamepadInput mMe;
     private Controller gamepad;
+    private WebSocketClient webSocketClient;
+    private float mSteer;
+    private ScheduledExecutorService scheduler;
 
     private GamepadInput() {
+        try {
+            webSocketClient = new WebSocketClient(new URI("ws://localhost:8080")) {
+                @Override
+                public void onOpen(ServerHandshake handshakedata) {
+                    System.out.println("WebSocket connection opened");
+                }
 
+                @Override
+                public void onMessage(String message) {
+                    System.out.println("Message from server: " + message);
+                }
+
+                @Override
+                public void onClose(int code, String reason, boolean remote) {
+                    System.out.println("WebSocket connection closed: " + reason);
+                }
+
+                @Override
+                public void onError(Exception ex) {
+                    ex.printStackTrace();
+                }
+            };
+            webSocketClient.connect();
+        } catch (URISyntaxException e) {
+            e.printStackTrace();
+        }
+
+        scheduler = Executors.newScheduledThreadPool(1);
+        scheduler.scheduleAtFixedRate(this::sendMessage, 0, 100, TimeUnit.MILLISECONDS);
     }
 
     public static GamepadInput getMe() {
@@ -59,12 +98,16 @@ public class GamepadInput implements Input {
             inputThread.setDaemon(true);
             inputThread.start();
         }
+
+        scheduler.scheduleAtFixedRate(this::sendMessage, 0, 250, TimeUnit.MILLISECONDS);
     }
 
     public void stop() {
         if (inputThread.isAlive()) {
             inputThread.interrupt();
         }
+
+        scheduler.shutdown();
     }
 
     @Override
@@ -124,34 +167,62 @@ public class GamepadInput implements Input {
         float value = event.getValue();
 
         if (componentName.equals(mforward_Button)) {
+            System.out.println(event);
+            System.out.println(value);
             if (value == 1.0f) {
-                goForward();
+                Robot.getMe().setForward(true);
+            } else {
+                Robot.getMe().setForward(false);
             }
         } else if (componentName.equals(mbackward_Button)) {
+            System.out.println(event);
+            System.out.println(value);
             if (value == 1.0f) {
-                goBackward();
+                Robot.getMe().setBackward(true);
+            } else {
+                Robot.getMe().setBackward(false);
             }
         } else if (componentName.equals(msteer_Button)) {
             steer(value);
         }
     }
 
-    private void goForward() {
-        System.out.println("Moving forward");
+    private JSONObject createMessage(Robot robot) {
+        JSONObject message = new JSONObject();
+        message.put("deviceid", ViewController.roboterId);
+        message.put("speed", robot.getSpeed());
+        message.put("direction", this.calculateDireciton());
+        return message;
     }
 
-    private void goBackward() {
-        System.out.println("Moving backward");
+    public int calculateDireciton() {
+        if (Robot.getMe().getDirection() == 0) {
+            if (mSteer < -0.1) {
+                return (int) (360 + (mSteer * 90));
+            } else if (mSteer > 0.1){
+                return (int) (0 + mSteer * 90);
+            }
+        } else {
+            if (mSteer < -0.1) {
+                return (int) (180 - mSteer * 90);
+            } else if (mSteer > 0.1){
+                return (int) (180 - mSteer * 90);
+            }
+        }
+
+        return Robot.getMe().getDirection();
+    }
+
+    private void sendMessage() {
+        JSONObject message = createMessage(Robot.getMe());
+
+        if (webSocketClient != null && webSocketClient.isOpen()) {
+            webSocketClient.send(message.toJSONString());
+        }
     }
 
     private void steer(float value) {
-        if (value < -0.2) {
-            System.out.println("Steering left with value:" + value);
-        } else if (value > 0.2) {
-            System.out.println("Steering right with value:" + value);
-        } else {
-            System.out.println("Neutral steering with value:" + value);
-        }
+        mSteer = value;
     }
 
     @Override
